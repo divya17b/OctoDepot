@@ -9,5 +9,8 @@ oop_hello:
 	$(CC) -shared bin/shared/speak.o -o bin/shared/libspeak.so
 	$(CC) bin/oop_hello.o -Lbin/shared -lspeak -o bin/oop_hello
 
+test:
+	$(CC) src/test.cpp src/logger/logger.cpp -o bin/test/runtest
+
 clean:
 	find bin -type f -delete

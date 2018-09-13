@@ -4,12 +4,19 @@
 #include <iostream>
 #include <string>
 
+struct logLine {
+  double timestamp;
+  std::string indicator;
+  std::string message;
+};
+
 class Logger {
-  private:
-    std::string logOutputLine;
   public:
     Logger();
     ~Logger();
+    int ReadAll();
+    int Append();
+    std::string serialize(logLine line);
 };
 
 #endif
