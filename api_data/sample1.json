@@ -1,0 +1,10 @@
+/* productID	productName	ASIN	quantity	price	location	deliveryTimestamp */
+{
+  "productID": 1,
+  "productName": "AA Battery",
+  "asin": 10000000001,
+  "quantityAvail": 10000000,
+  "price": 0.05,
+  "location": "City of Industry",
+  "deliveryTimestamp": 30,
+}
