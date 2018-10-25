@@ -1,21 +1,31 @@
+#include <vector>
+#include <string>
+#include <iostream>
+#include <fstream>
+
 #include "Logger.hpp"
 
-Logger::Logger() {
+Logger::Logger(std::string LogFile) {
 	// TODO - implement Logger::Logger
-	throw "Not yet implemented";
+	Log.open(LogFile, std::ios_base::app);
 }
 
-void Logger::readLines(int startTime, int endTime, int startTime, int endTime) {
+std::vector<std::string> Logger::readLines(float startTime, float endTime) {
 	// TODO - implement Logger::readLines
 	throw "Not yet implemented";
 }
 
-void Logger::writeLine(int line, int line) {
+int Logger::writeLine(std::string line) {
 	// TODO - implement Logger::writeLine
-	throw "Not yet implemented";
+	Log << line << std::endl;
+	return 1;
 }
 
-void Logger::writeLines(int lines) {
+int Logger::writeLines(std::vector<std::string> lines) {
 	// TODO - implement Logger::writeLines
-	throw "Not yet implemented";
+	int linesWritten = 0;
+	for (auto i : lines) {
+		linesWritten += this->writeLine(i);
+	}
+	return linesWritten;
 }
