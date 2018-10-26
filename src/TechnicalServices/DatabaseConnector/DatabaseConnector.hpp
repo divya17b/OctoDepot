@@ -4,11 +4,14 @@
 class DatabaseConnector {
 
 private:
+	std::string db_name;
+	sqlite3 *db;
+	int rc;
 	void connect();
 	void disconnect();
-
+	static int callback(void *NotUsed, int argc, char **argv, char **azColName);
 public:
-	DatabaseConnector();
+	DatabaseConnector(std::string db_file_name);
 
 	void ProductCreate(int productID, int productName, int productPrice, int UPC, int description);
 	void ProductUpdate(int productID, int productName, int productPrice, int UPC, int description);

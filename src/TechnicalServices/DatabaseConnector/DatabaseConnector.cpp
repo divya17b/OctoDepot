@@ -1,9 +1,38 @@
-#include "DatabaseConnector.hpp"
+#include <string>
+#include <iostream>
 #include <sqlite3.h>
 
-DatabaseConnector::DatabaseConnector() {
-	// TODO - implement DatabaseConnector::DatabaseConnector
-	throw "Not yet implemented";
+#include "DatabaseConnector.hpp"
+
+DatabaseConnector::DatabaseConnector(std::string db_file_name) {
+	db_name = db_file_name;
+	this->connect();
+	char *zErrMsg = 0;
+	const char *sql1 = "create table myTable (var1 varchar(30), var2 int)";
+	const char *sql2 = "insert into myTable (var1, var2) values ('shit', 12)";
+	const char *sql3 = "select * from myTable";
+	sqlite3_exec(db, sql1, this->callback, 0, &zErrMsg);
+	sqlite3_exec(db, sql2, this->callback, 0, &zErrMsg);
+	sqlite3_exec(db, sql3, this->callback, 0, &zErrMsg);
+	this->disconnect();
+}
+
+void DatabaseConnector::connect() {
+	sqlite3_open(db_name.c_str(), &db);
+}
+void DatabaseConnector::disconnect() {
+	sqlite3_close(db);
+}
+
+int DatabaseConnector::callback(void *NotUsed, int argc, char **argv, char **azColName)
+{
+	int i;
+	for(i=0; i<argc; i++)
+	{
+		std::cout<<azColName[i]<<" = " << (argv[i] ? argv[i] : "NULL")<<"\n";
+	}
+	std::cout<<"\n";
+	return 0;
 }
 
 void DatabaseConnector::ProductCreate(int productID, int productName, int productPrice, int UPC, int description) {
