@@ -4,13 +4,19 @@
 class Logger {
 
 private:
-	std::ofstream Log;
+	std::ofstream logWrite;
+	std::ifstream logRead;
+	std::string logFileLocation;
 	std::vector<std::string> read_buffer;
+
+	void openLogFileAsReading();
+	void openLogFileAsWriting();
+	void closeLog();
 public:
 	Logger(std::string LogFile);
-	std::vector<std::string> readLines(float startTime, float endTime);
+	std::vector<std::string> readLines();
 	int writeLine(std::string line);
-	int writeLines(std::vector<std::string> lines);
+	int writeLines(std::vector<std::string> &lines);
 };
 
 #endif
