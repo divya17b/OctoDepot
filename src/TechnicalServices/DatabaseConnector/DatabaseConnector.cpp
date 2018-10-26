@@ -8,8 +8,8 @@ DatabaseConnector::DatabaseConnector(std::string db_file_name) {
 	db_name = db_file_name;
 	this->connect();
 	char *zErrMsg = 0;
-	const char *sql1 = "create table myTable (var1 varchar(30), var2 int)";
-	const char *sql2 = "insert into myTable (var1, var2) values ('shit', 12)";
+	const char *sql1 = "create table myTable (UPC int PRIMARY KEY, name varchar(30))";
+	const char *sql2 = "insert into myTable (UPC, name) values (7355608, 'iPhone')";
 	const char *sql3 = "select * from myTable";
 	sqlite3_exec(db, sql1, this->callback, 0, &zErrMsg);
 	sqlite3_exec(db, sql2, this->callback, 0, &zErrMsg);

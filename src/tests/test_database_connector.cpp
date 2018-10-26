@@ -10,7 +10,7 @@ int main() {
   std::cout << "Test for TechnicalServices/Logger" << std::endl;
   // initialize class
   std::cout << "1. initialize class";
-  DatabaseConnector db("test1.db");
+  DatabaseConnector db("test.db");
   std::cout << "- Success" << std::endl;
   
   return 0;
