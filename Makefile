@@ -10,8 +10,11 @@ CFLAGS=-Wall -std=c++14
 # 	$(CC) $(CFLAGS) -shared bin/shared/speak.o -o bin/shared/libspeak.so
 # 	$(CC) $(CFLAGS) bin/oop_hello.o -Lbin/shared -lspeak -o bin/oop_hello
 
-test:
-	$(CC) $(CFLAGS) src/test.cpp src/TechnicalServices/Logger/Logger.cpp -o bin/test/test
+test_logger:
+	$(CC) $(CFLAGS) src/tests/test_Logger_Logger.cpp src/TechnicalServices/Logger/Logger.cpp -o bin/test/test_logger
+
+test_db:
+	$(CC) $(CFLAGS) src/tests/test_database_connector.cpp src/TechnicalServices/DatabaseConnector/DatabaseConnector.cpp -lsqlite3 -o bin/test/test_database
 
 clean:
 	find bin -type f -delete

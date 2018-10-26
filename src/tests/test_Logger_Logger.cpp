@@ -2,9 +2,7 @@
 #include <fstream>
 #include <vector>
 
-// #include "logger/logger.hpp"
-
-#include "TechnicalServices/Logger/Logger.hpp"
+#include "../TechnicalServices/Logger/Logger.hpp"
 
 int main() {
   std::cout << "Test for TechnicalServices/Logger" << std::endl;
@@ -50,5 +48,6 @@ int main() {
     std::cout << "- Success" << std::endl;
   else
     std::cout << "- Fail" << std::endl;
+  
   return 0;
 }
