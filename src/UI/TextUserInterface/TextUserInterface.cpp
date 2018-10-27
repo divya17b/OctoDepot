@@ -1,6 +1,7 @@
 #include <string>
 #include <iostream>
-#include "../../TechnicalServices/AuthorizationVendorConnector/AuthorizationVendorConnector.hpp"
+#include "../../Domain/AuthorizationHandler/AuthorizationHandler.hpp"
+// #include "../../TechnicalServices/AuthorizationVendorConnector/AuthorizationVendorConnector.hpp"
 #include "TextUserInterface.hpp"
 
 TextUserInterface::TextUserInterface() {
@@ -10,14 +11,6 @@ TextUserInterface::TextUserInterface() {
     // strat mainloop
     this->MainLoop();
 }
-
-// bool TextUserInterface::isActive() {
-//     return running;
-// }
-
-// int TextUserInterface::getPermission() {
-//     return permission;
-// }
 
 int TextUserInterface::askUserID() {
     int userid = 0;
@@ -35,8 +28,8 @@ std::string TextUserInterface::askUserPassword() {
 
 void TextUserInterface::login() {
     // init AuthVendor connector
-    AuthorizationVendorConnector auth("auth.vendor.com/api/v15/");
-
+    // AuthorizationVendorConnector auth("auth.vendor.com/api/v15/");
+    AuthorizationHandler auth;
     // ask userid and password
     int userid = 0;
     std::string password = "";
@@ -47,7 +40,7 @@ void TextUserInterface::login() {
     // std::cout << userid << "/" << password << std::endl;
 
     // get permission from Auth Vendor
-    permission = auth.authenticateUser(userid, password);
+    permission = auth.authenticate(userid, password);
     if (permission == -1) {
         std::cout << "Incorrect login credential." << std::endl;
     }

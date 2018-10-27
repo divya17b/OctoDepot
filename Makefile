@@ -17,10 +17,13 @@ test_db:
 	$(CC) $(CFLAGS) src/tests/test_database_connector.cpp src/TechnicalServices/DatabaseConnector/DatabaseConnector.cpp -lsqlite3 -o bin/test/test_database
 
 test_auth:
-	$(CC) $(CFLAGS) src/tests/test_auth_vendor_connector.cpp src/TechnicalServices/AuthorizationVendorConnector/AuthorizationVendorConnector.cpp -o bin/test/test_auth_vendor_connector
+	$(CC) $(CFLAGS) src/tests/test_auth_vendor_connector.cpp src/TechnicalServices/AuthorizationVendorConnector/AuthorizationVendorConnector.cpp  -o bin/test/test_auth_vendor_connector
+
+test_auth_handler:
+	$(CC) $(CFLAGS) src/tests/test_authHandler.cpp src/Domain/AuthorizationHandler/AuthorizationHandler.cpp src/TechnicalServices/AuthorizationVendorConnector/AuthorizationVendorConnector.cpp -o bin/test/test_auth_vendor_connector
 
 test_tui:
-	$(CC) $(CFLAGS) src/tests/test_tui.cpp src/UI/TextUserInterface/TextUserInterface.cpp src/TechnicalServices/AuthorizationVendorConnector/AuthorizationVendorConnector.cpp -o bin/test/test_tui
+	$(CC) $(CFLAGS) src/tests/test_tui.cpp src/UI/TextUserInterface/TextUserInterface.cpp src/Domain/AuthorizationHandler/AuthorizationHandler.cpp src/TechnicalServices/AuthorizationVendorConnector/AuthorizationVendorConnector.cpp -o bin/test/test_tui
 
 clean:
 	find bin -type f -delete
