@@ -29,7 +29,7 @@ int DatabaseConnector::callback(void *NotUsed, int argc, char **argv, char **azC
 	int i;
 	for(i=0; i<argc; i++)
 	{
-		std::cout<<azColName[i]<<" = " << (argv[i] ? argv[i] : "NULL")<<"\n";
+		std::cout<< azColName[i] << " = " << (argv[i] ? argv[i] : "NULL")<<"\n";
 	}
 	std::cout<<"\n";
 	return 0;

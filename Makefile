@@ -16,5 +16,8 @@ test_logger:
 test_db:
 	$(CC) $(CFLAGS) src/tests/test_database_connector.cpp src/TechnicalServices/DatabaseConnector/DatabaseConnector.cpp -lsqlite3 -o bin/test/test_database
 
+test_auth:
+	$(CC) $(CFLAGS) src/tests/test_auth_vendor_connector.cpp src/TechnicalServices/AuthorizationVendorConnector/AuthorizationVendorConnector.cpp -o bin/test/test_auth_vendor_connector
+
 clean:
 	find bin -type f -delete
