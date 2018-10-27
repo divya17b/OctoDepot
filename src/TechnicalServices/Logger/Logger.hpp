@@ -12,6 +12,8 @@ private:
 	void openLogFileAsReading();
 	void openLogFileAsWriting();
 	void closeLog();
+
+	std::string serialize();
 public:
 	Logger(std::string LogFile);
 	std::vector<std::string> readLines();

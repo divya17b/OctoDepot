@@ -24,6 +24,11 @@ void Logger::closeLog() {
 		logRead.close();
 }
 
+std::string serialize() {
+	std::string line;
+	return line;
+}
+
 std::vector<std::string> Logger::readLines() {
 	// 1. check the log file is opened is write mode or not
 	// 2. if so, close and reopen it as read mode

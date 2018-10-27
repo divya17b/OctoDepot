@@ -11,13 +11,13 @@ CFLAGS=-Wall -std=c++14
 # 	$(CC) $(CFLAGS) bin/oop_hello.o -Lbin/shared -lspeak -o bin/oop_hello
 
 test_logger:
-	$(CC) $(CFLAGS) \ 
+	$(CC) $(CFLAGS) \
 		src/tests/test_Logger_Logger.cpp \
-		src/TechnicalServices/Logger/Logger.cpp \ 
+		src/TechnicalServices/Logger/Logger.cpp \
 	-o bin/test/test_logger
 
 test_db:
-	$(CC) $(CFLAGS) \ 
+	$(CC) $(CFLAGS) \
 		src/tests/test_database_connector.cpp \
 		src/TechnicalServices/DatabaseConnector/DatabaseConnector.cpp \
 	-lsqlite3 \
