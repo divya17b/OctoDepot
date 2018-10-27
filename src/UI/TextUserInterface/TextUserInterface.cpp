@@ -7,7 +7,7 @@ TextUserInterface::TextUserInterface() {
     permission = -1;
     current_userid = 0;
     isActive = true;
-    std::cout << "ta-da!" << std::endl;
+    // strat mainloop
     this->MainLoop();
 }
 
@@ -57,6 +57,7 @@ void TextUserInterface::startSession() {
     if (permission == 0) {
         // start admin session here
         std::cout << "Starting Admin Session..." << std::endl;
+        this->shutdown();
     } else if (permission == 100) {
         // start manager session here
         std::cout << "Starting Manager Session..." << std::endl;
@@ -80,9 +81,16 @@ void TextUserInterface::shutdown() {
 void TextUserInterface::MainLoop() {
     while (isActive) {
         if (permission == -1) {
+            this->printLogo();
             this->login();
         } else {
             this->startSession();
         }
     }
+    std::cout << "Shutting down...\nBye!" << std::endl;
+}
+
+void TextUserInterface::printLogo() {
+    std::string logo = "   ____       _        _____                   _   \n  / __ \\     | |      |  __ \\                 | |  \n | |  | | ___| |_ ___ | |  | | ___ _ __   ___ | |_ \n | |  | |/ __| __/ _ \\| |  | |/ _ | '_ \\ / _ \\| __|\n | |__| | (__| || (_) | |__| |  __| |_) | (_) | |_ \n  \\____/ \\___|\\__\\___/|_____/ \\___| .__/ \\___/ \\__|\n                                  | |              \n                                  |_|              \n";
+    std::cout << logo << std::endl;
 }

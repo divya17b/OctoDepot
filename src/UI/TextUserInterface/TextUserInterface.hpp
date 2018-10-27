@@ -12,6 +12,7 @@ private:
 
 public:
     TextUserInterface();
+    void printLogo();
     void login();
     void startSession();
     void shutdown();
