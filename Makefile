@@ -19,5 +19,8 @@ test_db:
 test_auth:
 	$(CC) $(CFLAGS) src/tests/test_auth_vendor_connector.cpp src/TechnicalServices/AuthorizationVendorConnector/AuthorizationVendorConnector.cpp -o bin/test/test_auth_vendor_connector
 
+test_tui:
+	$(CC) $(CFLAGS) src/tests/test_tui.cpp src/UI/TextUserInterface/TextUserInterface.cpp src/TechnicalServices/AuthorizationVendorConnector/AuthorizationVendorConnector.cpp -o bin/test/test_tui
+
 clean:
 	find bin -type f -delete
