@@ -11,7 +11,7 @@ void AdminMenu::initSelections() {
 }
 void AdminMenu::takeSelection() {
     int selection = -1;
-    std::cout << ": ";
+    std::cout << "\n: ";
     std::cin >> selection;
 
     // print selection, debug purpose
@@ -31,6 +31,7 @@ void AdminMenu::takeSelection() {
 
 void AdminMenu::sessionLoop() {
     this->initSelections();
+    this->clearScreen();
     while (isActive) {
         this->displayMenu();
         this->takeSelection();

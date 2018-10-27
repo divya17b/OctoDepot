@@ -8,6 +8,7 @@ protected:
     int current_userid;
     std::string menu;
 
+    void clearScreen();
     void displayMenu();
     void initSelections();
     void takeSelection();

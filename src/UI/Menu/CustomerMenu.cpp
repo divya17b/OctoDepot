@@ -11,7 +11,7 @@ void CustomerMenu::initSelections() {
 }
 void CustomerMenu::takeSelection() {
     int selection = -1;
-    std::cout << ": ";
+    std::cout << "\n: ";
     std::cin >> selection;
 
     // print selection, debug purpose
@@ -31,6 +31,7 @@ void CustomerMenu::takeSelection() {
 
 void CustomerMenu::sessionLoop() {
     this->initSelections();
+    this->clearScreen();
     while (isActive) {
         this->displayMenu();
         this->takeSelection();

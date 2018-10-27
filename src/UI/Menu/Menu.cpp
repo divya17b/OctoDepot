@@ -5,6 +5,10 @@
 Menu::Menu() {
     isActive = true;
 }
+
+void Menu::clearScreen() {
+    for (int i=0;i<24;i++) std::cout << std::endl;
+}
 void Menu::displayMenu() {
     std::cout << menu << std::endl;
 }
@@ -35,6 +39,7 @@ void Menu::logout() {
 void Menu::sessionLoop() {
     this->initSelections();
     while (isActive) {
+        this->clearScreen();
         this->displayMenu();
         this->takeSelection();
     }
