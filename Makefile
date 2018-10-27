@@ -44,5 +44,15 @@ test_tui:
 		src/TechnicalServices/AuthorizationVendorConnector/AuthorizationVendorConnector.cpp \
 	-o bin/test/test_tui
 
+test_menu:
+	$(CC) $(CFLAGS) \
+		src/tests/test_menu.cpp \
+		src/UI/Menu/Menu.cpp \
+		src/UI/Menu/AuditorMenu.cpp \
+		src/UI/Menu/AdminMenu.cpp \
+		src/UI/Menu/SalespersonMenu.cpp \
+		src/UI/Menu/CustomerMenu.cpp \
+	-o bin/test/test_menu
+
 clean:
 	find bin -type f -delete
