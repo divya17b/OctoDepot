@@ -7,7 +7,7 @@ AdminMenu::AdminMenu() {
 }
 
 void AdminMenu::initSelections() {
-    menu = "Admin menu\n-------------------\n1. Logout";
+    menu = "Admin menu\n-------------------\n1. Modify Customer Information\n0. Logout";
 }
 void AdminMenu::takeSelection() {
     int selection = -1;
@@ -15,14 +15,17 @@ void AdminMenu::takeSelection() {
     std::cin >> selection;
 
     // print selection, debug purpose
-    std::cout << selection << std::endl;
+    // std::cout << selection << std::endl;
 
-    if (selection == 1) {
-        std::cout << "assume you have the log already" << std::endl;
-    } else if (selection == 2) {
-        this->logout();
-    } else {
-
+    switch (selection) {
+        case 0:
+            this->logout();
+            break;
+        case 1:
+            std::cout << "Modifying Customer Information !!" << std::endl;
+            break;
+        default:
+            break;
     }
 }
 

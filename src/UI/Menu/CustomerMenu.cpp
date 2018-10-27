@@ -7,7 +7,7 @@ CustomerMenu::CustomerMenu() {
 }
 
 void CustomerMenu::initSelections() {
-    menu = "Customer menu\n-------------------\n1. Logout";
+    menu = "Customer menu\n-------------------\n1. Place Order Using UPC\n0. Logout";
 }
 void CustomerMenu::takeSelection() {
     int selection = -1;
@@ -15,14 +15,17 @@ void CustomerMenu::takeSelection() {
     std::cin >> selection;
 
     // print selection, debug purpose
-    std::cout << selection << std::endl;
+    // std::cout << selection << std::endl;
 
-    if (selection == 1) {
-        std::cout << "assume you have the log already" << std::endl;
-    } else if (selection == 2) {
-        this->logout();
-    } else {
-
+    switch (selection) {
+        case 0:
+            this->logout();
+            break;
+        case 1:
+            std::cout << "assume you are placing order" << std::endl;
+            break;
+        default:
+            break;
     }
 }
 

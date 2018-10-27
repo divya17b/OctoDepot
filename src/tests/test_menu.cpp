@@ -6,8 +6,8 @@
 #include "../UI/Menu/CustomerMenu.hpp"
 
 int main() {
-    Menu m;
-    m.sessionLoop();
+    // Menu m;
+    // m.sessionLoop();
 
     AuditorMenu auditorM;
     auditorM.sessionLoop();
