@@ -5,7 +5,6 @@
 #include "Menu.hpp"
 #include "AuditorMenu.hpp"
 #include "../../Domain/LogHandler/LogHandler.hpp"
-#include "../../TechnicalServices/Logger/Logger.hpp"
 
 AuditorMenu::AuditorMenu() {
 }

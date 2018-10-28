@@ -1,14 +1,6 @@
 CC=g++
 CFLAGS=-Wall -std=c++14
 
-# hello: src/hello/hello.cpp
-# 	$(CC) $(CFLAGS) src/hello/hello.cpp -o bin/hello
-#
-# oop_hello:
-# 	$(CC) $(CFLAGS) -c src/oop_hello/oop_hello.cpp -o bin/oop_hello.o
-# 	$(CC) $(CFLAGS) -c -fPIC src/oop_hello/speak/speak.cpp -o bin/shared/speak.o
-# 	$(CC) $(CFLAGS) -shared bin/shared/speak.o -o bin/shared/libspeak.so
-# 	$(CC) $(CFLAGS) bin/oop_hello.o -Lbin/shared -lspeak -o bin/oop_hello
 
 test_logger:
 	$(CC) $(CFLAGS) \
@@ -22,6 +14,14 @@ test_log_handler:
 		src/TechnicalServices/Logger/Logger.cpp \
 		src/Domain/LogHandler/LogHandler.cpp \
 	-o bin/test/test_log_handler
+
+test_user_handler:
+	$(CC) $(CFLAG) \
+		src/tests/test_userhandler.cpp \
+		src/Domain/UserHandler/UserHandler.cpp \
+		src/TechnicalServices/DatabaseConnector/DatabaseConnector.cpp \
+	-lsqlite3 \
+	-o bin/test/test_user_handler
 
 test_db:
 	$(CC) $(CFLAGS) \
@@ -47,8 +47,15 @@ test_tui:
 	$(CC) $(CFLAGS) \
 		src/tests/test_tui.cpp \
 		src/UI/TextUserInterface/TextUserInterface.cpp \
+		src/UI/Menu/Menu.cpp \
+		src/UI/Menu/AuditorMenu.cpp \
+		src/UI/Menu/AdminMenu.cpp \
+		src/UI/Menu/SalespersonMenu.cpp \
+		src/UI/Menu/CustomerMenu.cpp \
 		src/Domain/AuthorizationHandler/AuthorizationHandler.cpp \
+		src/Domain/LogHandler/LogHandler.cpp \
 		src/TechnicalServices/AuthorizationVendorConnector/AuthorizationVendorConnector.cpp \
+		src/TechnicalServices/Logger/Logger.cpp \
 	-o bin/test/test_tui
 
 test_menu:

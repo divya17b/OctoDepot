@@ -13,5 +13,9 @@ int main() {
   DatabaseConnector db("test.db");
   std::cout << "- Success" << std::endl;
   
+  db.Initialize();
+
+  db.UserCreate(7727349, "OctoDepot", "Yoko Kanazuki", "1159 Jeffery Rd, Suite 100, Irvine, CA 92612", "i@noctoid.com", "949-111-2222");
+  
   return 0;
 }
