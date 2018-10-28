@@ -24,9 +24,41 @@ void Logger::closeLog() {
 		logRead.close();
 }
 
-std::string serialize() {
-	std::string line;
+std::string Logger::serialize(std::string timestamp, std::string type, int userid, std::string msg) {
+	std::string line = "[";
+
+	line += timestamp;
+
+	line += "|";
+
+	line += type;
+
+	line += "|";
+
+	line += std::to_string(userid);
+
+	line += "] ";
+	line += msg;
+
+	// std::cout << line << std::endl;
+
 	return line;
+}
+
+// this is the actual part other models should call and use
+// this will serialize params into a string and write into the file
+// 1. call serialize
+// 2. call write line
+int Logger::log(std::string timestamp, std::string type, int userid, std::string msg) {
+	std::string line = this->serialize(timestamp, type, userid, msg);
+	// std::cout << line << std::endl;
+	if (logRead)
+		this->closeLog();
+	if (!logWrite)
+		this->openLogFileAsWriting();
+	// std::cout << line << std::endl;
+	this->logWrite << line << std::endl;
+	return 1;
 }
 
 std::vector<std::string> Logger::readLines() {
@@ -48,13 +80,14 @@ std::vector<std::string> Logger::readLines() {
 int Logger::writeLine(std::string line) {
 	// 1. check the log file is opened is read mode or not
 	// 2. if so, close and reopen it as write mode
-	if (logRead)
-		this->closeLog();
-	if (!logWrite)
-		this->openLogFileAsWriting();
 	// if the line to be written into the file is not empty we do write
 	if (!line.empty()) {
-		logWrite << line << std::endl;
+		if (logRead)
+			this->closeLog();
+		if (!logWrite)
+			this->openLogFileAsWriting();
+		std::cout << line << std::endl;
+		this->logWrite << line << std::endl;
 		return 1;
 	}
 	// if the line is empty, we don't write into the file
