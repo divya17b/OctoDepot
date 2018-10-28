@@ -55,7 +55,7 @@ int main() {
 
   // std::string l = logger.serialize(123.45678, "TEST", 1, "Test for logger.log and serialize method.");
   // logger.writeLine(l);
-  int logged = logger.log("1234564654.45", "TEST", 1, "Test for logger.log and serialize method.");
+  int logged = logger.log("TEST", 1, "Test for logger.log and serialize method.");
 
   if ( logged == 1)
     std::cout << "- Success" << std::endl;

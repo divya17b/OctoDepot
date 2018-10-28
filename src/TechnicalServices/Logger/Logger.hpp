@@ -14,12 +14,13 @@ private:
 	void closeLog();
 
 	std::string serialize(std::string timestamp, std::string type, int userid, std::string msg);
+	std::string getTimestamp();
 
 public:
 	// std::string serialize(std::string timestamp, std::string type, int userid, std::string msg);
 
 	Logger(std::string LogFile);
-	int log(std::string timestamp, std::string type, int userid, std::string msg);
+	int log(std::string type, int userid, std::string msg);
 	std::vector<std::string> readLines();
 	int writeLine(std::string line);
 	int writeLines(std::vector<std::string> &lines);

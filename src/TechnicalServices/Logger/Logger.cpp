@@ -2,6 +2,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <ctime>
 
 #include "Logger.hpp"
 
@@ -22,6 +23,20 @@ void Logger::closeLog() {
 		logWrite.close();
 	if (logRead)
 		logRead.close();
+}
+
+std::string Logger::getTimestamp() {
+	time_t rawtime;
+	struct tm * timeinfo;
+	char buffer[80];
+
+	time (&rawtime);
+	timeinfo = localtime(&rawtime);
+
+	strftime(buffer,sizeof(buffer),"%Y-%m-%d-%H:%M:%S",timeinfo);
+	std::string str(buffer);
+
+	return str;
 }
 
 std::string Logger::serialize(std::string timestamp, std::string type, int userid, std::string msg) {
@@ -49,8 +64,8 @@ std::string Logger::serialize(std::string timestamp, std::string type, int useri
 // this will serialize params into a string and write into the file
 // 1. call serialize
 // 2. call write line
-int Logger::log(std::string timestamp, std::string type, int userid, std::string msg) {
-	std::string line = this->serialize(timestamp, type, userid, msg);
+int Logger::log(std::string type, int userid, std::string msg) {
+	std::string line = this->serialize(this->getTimestamp(), type, userid, msg);
 	// std::cout << line << std::endl;
 	if (logRead)
 		this->closeLog();
