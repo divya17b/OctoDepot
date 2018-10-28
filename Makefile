@@ -59,6 +59,8 @@ test_menu:
 		src/UI/Menu/AdminMenu.cpp \
 		src/UI/Menu/SalespersonMenu.cpp \
 		src/UI/Menu/CustomerMenu.cpp \
+		src/TechnicalServices/Logger/Logger.cpp \
+		src/Domain/LogHandler/LogHandler.cpp \
 	-o bin/test/test_menu
 
 clean:

@@ -1,7 +1,11 @@
 #include <string>
+#include <vector>
+#include <fstream>
 #include <iostream>
 #include "Menu.hpp"
 #include "AuditorMenu.hpp"
+#include "../../Domain/LogHandler/LogHandler.hpp"
+#include "../../TechnicalServices/Logger/Logger.hpp"
 
 AuditorMenu::AuditorMenu() {
 }
@@ -18,14 +22,20 @@ void AuditorMenu::takeSelection() {
     // std::cout << selection << std::endl;
 
     switch (selection) {
-        case 0:
+        case 0: {
             this->logout();
             break;
-        case 1:
-            std::cout << "assume you have the log already" << std::endl;
+        } case 1: {
+            LogHandler mLogHandler;
+            std::vector<std::string> results;
+            results = mLogHandler.getLog("123", "456");
+
+            for (auto i : results) {
+                std::cout << i << std::endl;
+            }
             break;
-        default:
-            break;
+        } default:
+            std::cout << "Invalid option" << std::endl;
     }
 }
 
