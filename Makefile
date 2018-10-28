@@ -16,6 +16,13 @@ test_logger:
 		src/TechnicalServices/Logger/Logger.cpp \
 	-o bin/test/test_logger
 
+test_log_handler:
+	$(CC) $(CFLAG) \
+		src/tests/test_log_handler.cpp \
+		src/TechnicalServices/Logger/Logger.cpp \
+		src/Domain/LogHandler/LogHandler.cpp \
+	-o bin/test/test_log_handler
+
 test_db:
 	$(CC) $(CFLAGS) \
 		src/tests/test_database_connector.cpp \
