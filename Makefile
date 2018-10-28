@@ -67,7 +67,10 @@ test_menu:
 		src/UI/Menu/SalespersonMenu.cpp \
 		src/UI/Menu/CustomerMenu.cpp \
 		src/TechnicalServices/Logger/Logger.cpp \
+		src/TechnicalServices/DatabaseConnector/DatabaseConnector.cpp \
+		src/Domain/UserHandler/UserHandler.cpp \
 		src/Domain/LogHandler/LogHandler.cpp \
+	-lsqlite3 \
 	-o bin/test/test_menu
 
 clean:

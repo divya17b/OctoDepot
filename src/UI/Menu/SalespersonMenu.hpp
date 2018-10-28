@@ -7,7 +7,8 @@ public:
     SalespersonMenu();
     void initSelections();
     void takeSelection();
-    // void getLog();
+    int requestNumeric(std::string prompt);
+    std::string requestString(std::string prompt);
     void sessionLoop();
 };
 

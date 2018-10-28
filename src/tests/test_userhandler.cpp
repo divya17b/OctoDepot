@@ -23,6 +23,14 @@ int main() {
 //   int userid = userHandler.createUser(company_name, contact_name, address, email, phone);
     int userid = userHandler.createUser("OctoDepot", "Yoko Kanazuki", "1159 Jeffery Rd, Suite 100, Irvine, CA 92612", "i@noctoid.com", "949-111-2222");
   std::cout << userid << std::endl;
+
+//   std::string company_name, contact_name, address, email, phone;
+//   company_name = userHandler.requestString("Company Name: ");
+//   contact_name = userHandler.requestString("Contact Name: ");
+//   address      = userHandler.requestString("Address: ");
+//   email        = userHandler.requestString("Email: ");
+//   phone        = userHandler.requestString("Phone: ");
+//   int userid = userHandler.createUser(company_name, contact_name, address, email, phone);
   
   return 0;
 }

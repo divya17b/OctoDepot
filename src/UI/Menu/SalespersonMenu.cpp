@@ -1,7 +1,10 @@
 #include <string>
 #include <iostream>
+#include <sqlite3.h>
 #include "Menu.hpp"
 #include "SalespersonMenu.hpp"
+#include "../../Domain/UserHandler/UserHandler.hpp"
+#include "../../TechnicalServices/DatabaseConnector/DatabaseConnector.hpp"
 
 SalespersonMenu::SalespersonMenu() {
 }
@@ -11,22 +14,45 @@ void SalespersonMenu::initSelections() {
 }
 void SalespersonMenu::takeSelection() {
     int selection = -1;
-    std::cout << "\n: ";
-    std::cin >> selection;
+    selection = this->requestNumeric("\n: ");
 
     // print selection, debug purpose
-    std::cout << selection << std::endl;
+    // std::cout << selection << std::endl;
 
     switch (selection) {
         case 0:
             this->logout();
             break;
-        case 1:
-            std::cout << "Assume creating new customers account" << std::endl;
+        case 1: {
+            UserHandler userHandler;
+            std::string company_name, contact_name, address, email, phone;
+            company_name = this->requestString("Company Name: ");
+            contact_name = this->requestString("Contact Name: ");
+            address      = this->requestString("Address: ");
+            email        = this->requestString("Email: ");
+            phone        = this->requestString("Phone: ");
+            int userid = userHandler.createUser(company_name, contact_name, address, email, phone);
+
+            std::cout << "User created with ID -> " << userid << std::endl;
             break;
+        }
         default:
             break;
     }
+}
+
+int SalespersonMenu::requestNumeric(std::string prompt) {
+    int result;
+    std::cout << prompt;
+    std::cin >> result;
+    std::cin.ignore();
+    return result;
+}
+std::string SalespersonMenu::requestString(std::string prompt) {
+    std::string result;
+    std::cout << prompt;
+    std::getline(std::cin, result);
+    return result;
 }
 
 void SalespersonMenu::sessionLoop() {
