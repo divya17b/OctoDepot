@@ -19,5 +19,6 @@ int UserHandler::createUser(std::string company_name, std::string contact_name, 
 }
 
 int UserHandler::modifyUser(int userid, std::string company_name, std::string contact_name, std::string address, std::string email,std::string phone) {
-    
+    DatabaseConnector db("test.db");
+    return db.UserModify(userid, company_name, contact_name, address, email, phone);
 }

@@ -61,7 +61,24 @@ int DatabaseConnector::UserCreate(
 	std::string sql1 = "SELECT * FROM user";
 	sqlite3_exec(db, sql1.c_str(), this->callback, 0, &zErrMsg);
 	this->disconnect();
-	return 0;
+	return userid;
+}
+
+int DatabaseConnector::UserRemove(int userid) {
+	this->connect();
+	char *zErrMsg = 0;
+	std::string sql = "DELETE FROM user WHERE userid = '"+std::to_string(userid)+"'";
+	sqlite3_exec(db, sql.c_str(), this->callback, 0, &zErrMsg);
+	// std::string sql1 = "SELECT * FROM user";
+	// sqlite3_exec(db, sql1.c_str(), this->callback, 0, &zErrMsg);
+	this->disconnect();
+	return userid;
+}
+
+int DatabaseConnector::UserModify(int userid, std::string company_name, std::string contact_name, std::string address, std::string email,std::string phone) {
+	this->UserRemove(userid);
+	this->UserCreate(userid, company_name, contact_name, address, email, phone);
+	return userid;
 }
 
 

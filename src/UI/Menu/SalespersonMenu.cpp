@@ -41,19 +41,19 @@ void SalespersonMenu::takeSelection() {
     }
 }
 
-int SalespersonMenu::requestNumeric(std::string prompt) {
-    int result;
-    std::cout << prompt;
-    std::cin >> result;
-    std::cin.ignore();
-    return result;
-}
-std::string SalespersonMenu::requestString(std::string prompt) {
-    std::string result;
-    std::cout << prompt;
-    std::getline(std::cin, result);
-    return result;
-}
+// int SalespersonMenu::requestNumeric(std::string prompt) {
+//     int result;
+//     std::cout << prompt;
+//     std::cin >> result;
+//     std::cin.ignore();
+//     return result;
+// }
+// std::string SalespersonMenu::requestString(std::string prompt) {
+//     std::string result;
+//     std::cout << prompt;
+//     std::getline(std::cin, result);
+//     return result;
+// }
 
 void SalespersonMenu::sessionLoop() {
     this->initSelections();

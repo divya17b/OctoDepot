@@ -17,6 +17,8 @@ public:
 
 	void Initialize();
 	int UserCreate(int userid, std::string company_name, std::string contact_name, std::string address, std::string email,std::string phone);
+	int UserRemove(int userid);
+	int UserModify(int userid, std::string company_name, std::string contact_name, std::string address, std::string email,std::string phone);
 
 	void ProductCreate(int productID, int productName, int productPrice, int UPC, int description);
 	void ProductUpdate(int productID, int productName, int productPrice, int UPC, int description);

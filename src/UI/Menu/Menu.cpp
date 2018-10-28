@@ -21,8 +21,7 @@ void Menu::takeSelection() {
     // not consider wrong input
     // trusting user input :)
     int selection = -1;
-    std::cout << "=> ";
-    std::cin >> selection;
+    selection = this->requestNumeric("\n: ");
 
     // print selection, debug purpose
     std::cout << selection << std::endl;
@@ -30,6 +29,20 @@ void Menu::takeSelection() {
     if (selection == 1) {
         this->logout();
     }
+}
+
+int Menu::requestNumeric(std::string prompt) {
+    int result;
+    std::cout << prompt;
+    std::cin >> result;
+    std::cin.ignore();
+    return result;
+}
+std::string Menu::requestString(std::string prompt) {
+    std::string result;
+    std::cout << prompt;
+    std::getline(std::cin, result);
+    return result;
 }
 
 void Menu::logout() {

@@ -12,6 +12,8 @@ protected:
     void displayMenu();
     void initSelections();
     void takeSelection();
+    int requestNumeric(std::string prompt);
+    std::string requestString(std::string prompt);
     void logout();
 
 public:

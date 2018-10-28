@@ -1,7 +1,10 @@
 #include <string>
 #include <iostream>
+#include <sqlite3.h>
 #include "Menu.hpp"
 #include "AdminMenu.hpp"
+#include "../../Domain/UserHandler/UserHandler.hpp"
+#include "../../TechnicalServices/DatabaseConnector/DatabaseConnector.hpp"
 
 AdminMenu::AdminMenu() {
 }
@@ -21,9 +24,21 @@ void AdminMenu::takeSelection() {
         case 0:
             this->logout();
             break;
-        case 1:
-            std::cout << "Modifying Customer Information !!" << std::endl;
+        case 1: {
+            UserHandler userHandler;
+            std::string company_name, contact_name, address, email, phone;
+            int userid;
+            userid       = this->requestNumeric("User Modification | Please Give a User ID : ");
+            company_name = this->requestString("Company Name: ");
+            contact_name = this->requestString("Contact Name: ");
+            address      = this->requestString("Address: ");
+            email        = this->requestString("Email: ");
+            phone        = this->requestString("Phone: ");
+            userid = userHandler.modifyUser(userid, company_name, contact_name, address, email, phone);
+
+            std::cout << "User " << userid << "'s information is modified." << std::endl;
             break;
+        }
         default:
             break;
     }
