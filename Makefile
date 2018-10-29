@@ -23,6 +23,14 @@ test_user_handler:
 	-lsqlite3 \
 	-o bin/test/test_user_handler
 
+test_order_handler:
+	$(CC) $(CFLAG) \
+		src/tests/test_orderhandler.cpp \
+		src/Domain/OrderHandler/OrderHandler.cpp \
+		src/TechnicalServices/DatabaseConnector/DatabaseConnector.cpp \
+	-lsqlite3 \
+	-o bin/test/test_order_handler
+
 test_db:
 	$(CC) $(CFLAGS) \
 		src/tests/test_database_connector.cpp \
