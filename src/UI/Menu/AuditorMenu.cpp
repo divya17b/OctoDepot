@@ -6,7 +6,8 @@
 #include "AuditorMenu.hpp"
 #include "../../Domain/LogHandler/LogHandler.hpp"
 
-AuditorMenu::AuditorMenu() {
+AuditorMenu::AuditorMenu(int userid) {
+    session_userid = userid;
 }
 
 void AuditorMenu::initSelections() {
@@ -32,6 +33,7 @@ void AuditorMenu::takeSelection() {
             for (auto i : results) {
                 std::cout << i << std::endl;
             }
+            std::cout << "Log Retrieved by Auditor-" << session_userid << std::endl;
             break;
         } default:
             std::cout << "Invalid option" << std::endl;

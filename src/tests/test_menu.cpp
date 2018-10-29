@@ -6,19 +6,19 @@
 #include "../UI/Menu/CustomerMenu.hpp"
 
 int main() {
-    // Menu m;
-    // m.sessionLoop();
+    Menu m;
+    m.sessionLoop();
 
-    AuditorMenu auditorM;
-    auditorM.sessionLoop();
+    AuditorMenu auditorMenu(1234567);
+    auditorMenu.sessionLoop();
 
-    AdminMenu adminMenu;
+    AdminMenu adminMenu(1234567);
     adminMenu.sessionLoop();
 
-    CustomerMenu customerMenu(7727349);
+    CustomerMenu customerMenu(1234567);
     customerMenu.sessionLoop();
 
-    SalespersonMenu salesMenu;
+    SalespersonMenu salesMenu(1234567);
     salesMenu.sessionLoop();
 
     return 0;

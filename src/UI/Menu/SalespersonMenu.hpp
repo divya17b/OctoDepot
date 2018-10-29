@@ -4,7 +4,7 @@
 class SalespersonMenu : public Menu {
 
 public:
-    SalespersonMenu();
+    SalespersonMenu(int userid);
     void initSelections();
     void takeSelection();
     // int requestNumeric(std::string prompt);

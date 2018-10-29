@@ -4,7 +4,7 @@
 class AdminMenu : public Menu {
 
 public:
-    AdminMenu();
+    AdminMenu(int userid);
     void initSelections();
     void takeSelection();
     // void getLog();

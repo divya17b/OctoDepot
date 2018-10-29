@@ -6,7 +6,8 @@
 #include "../../Domain/UserHandler/UserHandler.hpp"
 #include "../../TechnicalServices/DatabaseConnector/DatabaseConnector.hpp"
 
-AdminMenu::AdminMenu() {
+AdminMenu::AdminMenu(int userid) {
+    session_userid = userid;
 }
 
 void AdminMenu::initSelections() {
@@ -36,7 +37,7 @@ void AdminMenu::takeSelection() {
             phone        = this->requestString("Phone: ");
             userid = userHandler.modifyUser(userid, company_name, contact_name, address, email, phone);
 
-            std::cout << "User " << userid << "'s information is modified." << std::endl;
+            std::cout << "User " << userid << "'s information is modified by Admin-" << session_userid << std::endl;
             break;
         }
         default:

@@ -4,7 +4,7 @@
 class AuditorMenu : public Menu {
 
 public:
-    AuditorMenu();
+    AuditorMenu(int userid);
     void initSelections();
     void takeSelection();
     // void getLog();

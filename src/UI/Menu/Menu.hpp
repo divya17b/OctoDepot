@@ -5,7 +5,7 @@ class Menu {
 
 protected:
     bool isActive;
-    int current_userid;
+    int session_userid;
     std::string menu;
 
     void clearScreen();

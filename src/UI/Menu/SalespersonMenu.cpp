@@ -6,7 +6,8 @@
 #include "../../Domain/UserHandler/UserHandler.hpp"
 #include "../../TechnicalServices/DatabaseConnector/DatabaseConnector.hpp"
 
-SalespersonMenu::SalespersonMenu() {
+SalespersonMenu::SalespersonMenu(int userid) {
+    session_userid = userid;
 }
 
 void SalespersonMenu::initSelections() {
@@ -33,7 +34,7 @@ void SalespersonMenu::takeSelection() {
             phone        = this->requestString("Phone: ");
             int userid = userHandler.createUser(company_name, contact_name, address, email, phone);
 
-            std::cout << "User created with ID -> " << userid << std::endl;
+            std::cout << "User created with ID -> " << userid << " By Sales Manager ID-" << session_userid << std::endl;
             break;
         }
         default:

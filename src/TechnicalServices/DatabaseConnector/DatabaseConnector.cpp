@@ -43,7 +43,7 @@ void DatabaseConnector::Initialize() {
 	const char *sql1 = "CREATE TABLE user (userid INT PRIMARY KEY, company_name TEXT, contact_name TEXT, address TEXT, email TEXT, phone TEXT)";
 	const char *sql2 = "CREATE TABLE orders (orderid INT PRIMARY KEY, userid INT, UPC INT, quantity INT, payid INT)";
 	const char *sql3 = "CREATE TABLE product (UPC INT PRIMARY KEY, product_name TEXT, vendor_name TEXT, price REAL, description TEXT)";
-	const char *sql4 = "CREATE TABLE payment (payid INT PRIMARY KEY, userid, INT, method TEXT, amount REAL, refund INT)";
+	const char *sql4 = "CREATE TABLE payment (payid INT PRIMARY KEY, userid INT, method TEXT, amount REAL, refund INT)";
 	sqlite3_exec(db, sqla, this->callback, 0, &zErrMsg);
 	// std::cout << zErrMsg << std::endl;
 	sqlite3_exec(db, sqlb, this->callback, 0, &zErrMsg);
