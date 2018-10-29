@@ -12,7 +12,7 @@
 #include "TextUserInterface.hpp"
 
 TextUserInterface::TextUserInterface() {
-    version = "OctoDepot Virual Warehouse Version 1.0 Beta";
+    version = "OctoDepot Virtual Warehouse Version 1.0 Beta";
     permission = -1;
     current_userid = -1;
     isActive = true;
