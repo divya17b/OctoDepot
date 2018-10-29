@@ -1,6 +1,9 @@
 #include <string>
 #include <iostream>
 #include "../../Domain/AuthorizationHandler/AuthorizationHandler.hpp"
+#include "../../Domain/OrderHandler/OrderHandler.hpp"
+#include "../../Domain/UserHandler/UserHandler.hpp"
+#include "../../Domain/LogHandler/LogHandler.hpp"
 #include "../../UI/Menu/Menu.hpp"
 #include "../../UI/Menu/AuditorMenu.hpp"
 #include "../../UI/Menu/SalespersonMenu.hpp"
@@ -10,7 +13,7 @@
 
 TextUserInterface::TextUserInterface() {
     permission = -1;
-    current_userid = 0;
+    current_userid = -1;
     isActive = true;
     // strat mainloop
     this->MainLoop();
@@ -35,18 +38,19 @@ void TextUserInterface::login() {
     // AuthorizationVendorConnector auth("auth.vendor.com/api/v15/");
     AuthorizationHandler auth;
     // ask userid and password
-    int userid = -1;
+    // int userid = -1;
     std::string password = "";
-    userid = this->askUserID();
+    current_userid = this->askUserID();
     password = this->askUserPassword();
 
     // // for debug only
     // std::cout << userid << "/" << password << std::endl;
 
     // get permission from Auth Vendor
-    permission = auth.authenticate(userid, password);
+    permission = auth.authenticate(current_userid, password);
     if (permission == -1) {
         std::cout << "Incorrect login credential." << std::endl;
+        current_userid = -1;
     }
 }
 
@@ -70,7 +74,7 @@ void TextUserInterface::startSession() {
     } else if (permission == 1000) {
         // start customer session here
         std::cout << "Starting Customer Session..." << std::endl;
-        CustomerMenu customerMenu;
+        CustomerMenu customerMenu(current_userid);
         customerMenu.sessionLoop();
     } else {
         // incorrect permission should not start anything

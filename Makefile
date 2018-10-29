@@ -61,9 +61,13 @@ test_tui:
 		src/UI/Menu/SalespersonMenu.cpp \
 		src/UI/Menu/CustomerMenu.cpp \
 		src/Domain/AuthorizationHandler/AuthorizationHandler.cpp \
+		src/Domain/UserHandler/UserHandler.cpp \
 		src/Domain/LogHandler/LogHandler.cpp \
+		src/Domain/OrderHandler/OrderHandler.cpp \
 		src/TechnicalServices/AuthorizationVendorConnector/AuthorizationVendorConnector.cpp \
 		src/TechnicalServices/Logger/Logger.cpp \
+		src/TechnicalServices/DatabaseConnector/DatabaseConnector.cpp \
+	-lsqlite3 \
 	-o bin/test/test_tui
 
 test_menu:
