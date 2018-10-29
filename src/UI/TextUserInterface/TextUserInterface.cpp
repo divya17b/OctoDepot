@@ -12,11 +12,16 @@
 #include "TextUserInterface.hpp"
 
 TextUserInterface::TextUserInterface() {
+    version = "OctoDepot Virual Warehouse Version 1.0 Beta";
     permission = -1;
     current_userid = -1;
     isActive = true;
     // strat mainloop
     this->MainLoop();
+}
+
+void TextUserInterface::clearScreen() {
+    for (int i=0;i<24;i++) std::cout << std::endl;
 }
 
 int TextUserInterface::askUserID() {
@@ -101,6 +106,22 @@ void TextUserInterface::MainLoop() {
 }
 
 void TextUserInterface::printLogo() {
-    std::string logo = "   ____       _        _____                   _   \n  / __ \\     | |      |  __ \\                 | |  \n | |  | | ___| |_ ___ | |  | | ___ _ __   ___ | |_ \n | |  | |/ __| __/ _ \\| |  | |/ _ | '_ \\ / _ \\| __|\n | |__| | (__| || (_) | |__| |  __| |_) | (_) | |_ \n  \\____/ \\___|\\__\\___/|_____/ \\___| .__/ \\___/ \\__|\n                                  | |              \n                                  |_|              \n";
-    std::cout << logo << std::endl;
+    this->clearScreen();
+    std::string logo = 
+" ██████╗  ██████╗████████╗ ██████╗        \n"
+"██╔═══██╗██╔════╝╚══██╔══╝██╔═══██╗       \n"
+"██║   ██║██║        ██║   ██║   ██║       \n"
+"██║   ██║██║        ██║   ██║   ██║       \n"
+"╚██████╔╝╚██████╗   ██║   ╚██████╔╝       \n"
+" ╚═════╝  ╚═════╝   ╚═╝    ╚═════╝        \n"
+"                                          \n"
+"██████╗ ███████╗██████╗  ██████╗ ████████╗\n"
+"██╔══██╗██╔════╝██╔══██╗██╔═══██╗╚══██╔══╝\n"
+"██║  ██║█████╗  ██████╔╝██║   ██║   ██║   \n"
+"██║  ██║██╔══╝  ██╔═══╝ ██║   ██║   ██║   \n"
+"██████╔╝███████╗██║     ╚██████╔╝   ██║   \n"
+"╚═════╝ ╚══════╝╚═╝      ╚═════╝    ╚═╝   \n";
+
+    // std::string logo = "   ____       _        _____                   _   \n  / __ \\     | |      |  __ \\                 | |  \n | |  | | ___| |_ ___ | |  | | ___ _ __   ___ | |_ \n | |  | |/ __| __/ _ \\| |  | |/ _ | '_ \\ / _ \\| __|\n | |__| | (__| || (_) | |__| |  __| |_) | (_) | |_ \n  \\____/ \\___|\\__\\___/|_____/ \\___| .__/ \\___/ \\__|\n                                  | |              \n                                  |_|              \n";
+    std::cout << logo << std::endl << std::endl << std::endl << version << std::endl << std::endl;
 }

@@ -3,10 +3,12 @@
 
 class TextUserInterface {
 private:
+    std::string version;
     int permission;
     int current_userid;
     bool isActive;
 
+    void clearScreen();
     int askUserID();
     std::string askUserPassword();
 
