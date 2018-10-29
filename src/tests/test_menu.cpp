@@ -15,7 +15,7 @@ int main() {
     AdminMenu adminMenu;
     adminMenu.sessionLoop();
 
-    CustomerMenu customerMenu;
+    CustomerMenu customerMenu(7727349);
     customerMenu.sessionLoop();
 
     SalespersonMenu salesMenu;

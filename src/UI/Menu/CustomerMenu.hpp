@@ -2,9 +2,10 @@
 #define CustomerMenu_HPP
 
 class CustomerMenu : public Menu {
-
+private:
+    int session_userid;
 public:
-    CustomerMenu();
+    CustomerMenu(int userid);
     void initSelections();
     void takeSelection();
     // void getLog();

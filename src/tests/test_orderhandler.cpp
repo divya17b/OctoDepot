@@ -20,8 +20,8 @@ int main() {
   // std::string email = "i@noctoid.com";
   // std::string phone = "949-111-2222";
   
-  int payid = orderHandler.createPayment(7727349, "visa", "240", 0);
-  int orderid = orderHandler.createOrder(7727349, 123456, 120, payid);
+  int payid = orderHandler.createPayment("visa", "240", 0);
+  int orderid = orderHandler.createOrder(123456, 120, payid);
   std::cout << "OrderID: " << orderid << std::endl << "Payment ID: " << payid << std::endl;
 
 //   std::string company_name, contact_name, address, email, phone;

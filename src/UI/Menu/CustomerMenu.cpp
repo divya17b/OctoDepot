@@ -2,8 +2,10 @@
 #include <iostream>
 #include "Menu.hpp"
 #include "CustomerMenu.hpp"
+#include "../../Domain/OrderHandler/OrderHandler.hpp"
 
-CustomerMenu::CustomerMenu() {
+CustomerMenu::CustomerMenu(int userid) {
+    session_userid = userid;
 }
 
 void CustomerMenu::initSelections() {
@@ -21,9 +23,17 @@ void CustomerMenu::takeSelection() {
         case 0:
             this->logout();
             break;
-        case 1:
-            std::cout << "assume you are placing order" << std::endl;
-            break;
+        case 1:{
+            int UPC = this->requestNumeric("UPC: ");
+            int quantity = this->requestNumeric("Quantity: ");
+            std::string method = this->requestString("Please Specify a Payment Method: ");
+            std::string amount = this->requestString("Please Enter the amount: ");
+            
+            OrderHandler orderHandler(session_userid);
+            int payid = orderHandler.createPayment(method, amount, 0);
+            int orderid = orderHandler.createOrder(UPC, quantity, payid);
+            std::cout << "Your order has been placed.\nOrder ID: " << orderid << "\nPayment ID: " << payid << std::endl;
+        }
         default:
             break;
     }

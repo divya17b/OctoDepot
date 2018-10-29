@@ -78,6 +78,7 @@ test_menu:
 		src/TechnicalServices/DatabaseConnector/DatabaseConnector.cpp \
 		src/Domain/UserHandler/UserHandler.cpp \
 		src/Domain/LogHandler/LogHandler.cpp \
+		src/Domain/OrderHandler/OrderHandler.cpp \
 	-lsqlite3 \
 	-o bin/test/test_menu
 
