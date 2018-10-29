@@ -31,5 +31,20 @@ int main() {
   std::cout << "------ Product Search ------" << std::endl;
   db.ProductSearchByUPC(123456);
   db.ProductSearchByName("Test Product 2");
+
+  std::cout << "------ Order Create ------" << std::endl;
+  db.OrderCreate(100001, 7727349, 123456, 10, -1);
+  db.OrderCreate(100002, 7727349, 234567, 100, -1);
+  db.OrderCreate(100003, 7727349, 345678, 99, -1);
+
+  db.OrderUpdate(100001, 7727349, 123456, 15, -1);
+
+  db.OrderGetByID(100001);
+  std::cout << "3. Search Order by User ID" << std::endl << std::endl;
+  db.OrderSearchByUser(7727349);
+
+  std::cout << "------ Payment Create ------" << std::endl;
+  db.PaymentCreate(1234, 7727349, "visa", "1234.56", 0);
+  db.PaymentUpdate(1234, 7727349, "master", "2345.67", 0);
   return 0;
 }

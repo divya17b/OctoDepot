@@ -36,18 +36,30 @@ int DatabaseConnector::callback(void *NotUsed, int argc, char **argv, char **azC
 void DatabaseConnector::Initialize() {
 	this->connect();
 	char *zErrMsg = 0;
-	const char *sql0 = "DROP TABLE user";
-	const char *sql01 = "DROP TABLE product";
-	const char *sql02 = "DROP TABLE order";
+	const char *sqla = "DROP TABLE user";
+	const char *sqlb = "DROP TABLE product";
+	const char *sqlc = "DROP TABLE orders";
+	const char *sqld = "DROP TABLE payment";
 	const char *sql1 = "CREATE TABLE user (userid INT PRIMARY KEY, company_name TEXT, contact_name TEXT, address TEXT, email TEXT, phone TEXT)";
-	const char *sql2 = "CREATE TABLE order (orderid INT PRIMARY KEY, userid INT, UPC INT, quantity INT)";
+	const char *sql2 = "CREATE TABLE orders (orderid INT PRIMARY KEY, userid INT, UPC INT, quantity INT, payid INT)";
 	const char *sql3 = "CREATE TABLE product (UPC INT PRIMARY KEY, product_name TEXT, vendor_name TEXT, price REAL, description TEXT)";
-	sqlite3_exec(db, sql0, this->callback, 0, &zErrMsg);
-	sqlite3_exec(db, sql01, this->callback, 0, &zErrMsg);
-	sqlite3_exec(db, sql02, this->callback, 0, &zErrMsg);
+	const char *sql4 = "CREATE TABLE payment (payid INT PRIMARY KEY, userid, INT, method TEXT, amount REAL, refund INT)";
+	sqlite3_exec(db, sqla, this->callback, 0, &zErrMsg);
+	// std::cout << zErrMsg << std::endl;
+	sqlite3_exec(db, sqlb, this->callback, 0, &zErrMsg);
+	// std::cout << zErrMsg << std::endl;
+	sqlite3_exec(db, sqlc, this->callback, 0, &zErrMsg);
+	// std::cout << zErrMsg << std::endl;
+	sqlite3_exec(db, sqld, this->callback, 0, &zErrMsg);
+	// std::cout << zErrMsg << std::endl;
 	sqlite3_exec(db, sql1, this->callback, 0, &zErrMsg);
+	// std::cout << zErrMsg << std::endl;
 	sqlite3_exec(db, sql2, this->callback, 0, &zErrMsg);
+	// std::cout << zErrMsg << std::endl;
 	sqlite3_exec(db, sql3, this->callback, 0, &zErrMsg);
+	// std::cout << zErrMsg << std::endl;
+	sqlite3_exec(db, sql4, this->callback, 0, &zErrMsg);
+	// std::cout << zErrMsg << std::endl;
 	this->disconnect();
 }
 
@@ -89,7 +101,6 @@ int DatabaseConnector::UserModify(int userid, std::string company_name, std::str
 
 // (UPC INT PRIMARY KEY, product_name TEXT, vendor_name TEXT, price REAL, description TEXT)
 int DatabaseConnector::ProductCreate(int UPC, std::string product_name, std::string vendor_name, std::string price, std::string description) {
-	// TODO - implement DatabaseConnector::ProductCreate
 	this->connect();
 	char *zErrMsg = 0;
 	std::string sql = "INSERT INTO product (UPC, product_name, vendor_name, price, description) values ('"+std::to_string(UPC)+"','"+product_name+"','"+vendor_name+"','"+price+"','"+description+"')";
@@ -110,14 +121,12 @@ int DatabaseConnector::ProductRemove(int UPC){
 }
 
 int DatabaseConnector::ProductUpdate(int UPC, std::string product_name, std::string vendor_name, std::string price, std::string description) {
-	// TODO - implement DatabaseConnector::ProductUpdate
 	this->ProductRemove(UPC);
 	this->ProductCreate(UPC, product_name, vendor_name, price, description);
 	return UPC;
 }
 
 void DatabaseConnector::ProductSearchByUPC(int UPC) {
-	// TODO - implement DatabaseConnector::ProductSearchByUPC
 	this->connect();
 	char *zErrMsg = 0;
 	std::cout << UPC << std::endl;
@@ -128,7 +137,6 @@ void DatabaseConnector::ProductSearchByUPC(int UPC) {
 }
 
 void DatabaseConnector::ProductSearchByName(std::string product_name) {
-	// TODO - implement DatabaseConnector::ProductSearchByName
 	this->connect();
 	char *zErrMsg = 0;
 	std::string sql1 = "SELECT * FROM product WHERE product_name = '"+product_name+"'";
@@ -136,47 +144,78 @@ void DatabaseConnector::ProductSearchByName(std::string product_name) {
 	this->disconnect();
 }
 
-void DatabaseConnector::OrderCreate(int orderID, int productID, int userID, int quantity, int paymentID) {
-	// TODO - implement DatabaseConnector::OrderCreate
-	throw "Not yet implemented";
+// orderid INT PRIMARY KEY, userid INT, UPC INT, quantity INT, payid INT
+int DatabaseConnector::OrderCreate(int orderid, int userid, int UPC, int quantity, int payid) {
+	this->connect();
+	char *zErrMsg = 0;
+	std::string sql = "INSERT INTO orders (orderid, userid, UPC, quantity, payid) values ('"+std::to_string(orderid)+"','"+std::to_string(userid)+"','"+std::to_string(UPC)+"','"+std::to_string(quantity)+"','"+std::to_string(payid)+"')";
+	// std::string sql = "INSERT INTO orders (orderid, userid, UPC, quantity, payid) values (1,2,3,4,5)";
+	sqlite3_exec(db, sql.c_str(), this->callback, 0, &zErrMsg);
+	// std::cout << zErrMsg << std::endl;
+	std::string sql1 = "SELECT * FROM orders WHERE orderid = '"+std::to_string(orderid)+"'";
+	sqlite3_exec(db, sql1.c_str(), this->callback, 0, &zErrMsg);
+	// std::cout << zErrMsg << std::endl;
+	this->disconnect();
+	return orderid;
 }
 
-void DatabaseConnector::OrderUpdate(int orderID, int productID, int userID, int quantity, int paymentID) {
-	// TODO - implement DatabaseConnector::OrderUpdate
-	throw "Not yet implemented";
+int DatabaseConnector::OrderUpdate(int orderid, int userid, int UPC, int quantity, int payid) {
+	this->OrderRemove(orderid);
+	this->OrderCreate(orderid, userid, UPC, quantity, payid);
+	return orderid;
 }
 
-void DatabaseConnector::OrderRemove(int orderID) {
-	// TODO - implement DatabaseConnector::OrderRemove
-	throw "Not yet implemented";
+int DatabaseConnector::OrderRemove(int orderid) {
+	this->connect();
+	char *zErrMsg = 0;
+	std::string sql = "DELETE FROM orders WHERE orderid = '"+std::to_string(orderid)+"'";
+	sqlite3_exec(db, sql.c_str(), this->callback, 0, &zErrMsg);
+	this->disconnect();
+	return orderid;
 }
 
-void DatabaseConnector::OrderGetByID(int orderID) {
-	// TODO - implement DatabaseConnector::OrderGetByID
-	throw "Not yet implemented";
+void DatabaseConnector::OrderGetByID(int orderid) {
+	this->connect();
+	char *zErrMsg = 0;
+	std::string sql1 = "SELECT * FROM orders WHERE orderid = '"+std::to_string(orderid)+"'";
+	sqlite3_exec(db, sql1.c_str(), this->callback, 0, &zErrMsg);
+	this->disconnect();
 }
 
 void DatabaseConnector::OrderSearchByUser(int userid) {
-	// TODO - implement DatabaseConnector::OrderSearchByUser
-	throw "Not yet implemented";
+	this->connect();
+	char *zErrMsg = 0;
+	std::string sql1 = "SELECT * FROM orders WHERE userid = '"+std::to_string(userid)+"'";
+	sqlite3_exec(db, sql1.c_str(), this->callback, 0, &zErrMsg);
+	this->disconnect();
 }
 
-void DatabaseConnector::PaymentCreate(int paymentID) {
-	// TODO - implement DatabaseConnector::PaymentCreate
-	throw "Not yet implemented";
+// payid INT PRIMARY KEY, userid, INT, method TEXT, amount REAL, refund INT
+int DatabaseConnector::PaymentCreate(int payid, int userid, std::string method, std::string amount, int refund) {
+	this->connect();
+	char *zErrMsg = 0;
+	std::string sql = "INSERT INTO payment (payid, userid, method, amount, refund) values ('"+std::to_string(payid)+"','"+std::to_string(userid)+"','"+method+"','"+amount+"','"+std::to_string(refund)+"')";
+	// std::string sql = "INSERT INTO orders (orderid, userid, UPC, quantity, payid) values (1,2,3,4,5)";
+	sqlite3_exec(db, sql.c_str(), this->callback, 0, &zErrMsg);
+	// std::cout << zErrMsg << std::endl;
+	std::string sql1 = "SELECT * FROM payment WHERE payid = '"+std::to_string(payid)+"'";
+	sqlite3_exec(db, sql1.c_str(), this->callback, 0, &zErrMsg);
+	// std::cout << zErrMsg << std::endl;
+	this->disconnect();
+	return payid;
 }
 
-void DatabaseConnector::PaymentCreate(int paymentID, int paymentStatus) {
-	// TODO - implement DatabaseConnector::PaymentCreate
-	throw "Not yet implemented";
+int DatabaseConnector::PaymentUpdate(int payid, int userid, std::string method, std::string amount, int refund) {
+	this->PaymentRemove(payid);
+	this->PaymentCreate(payid, userid, method, amount, refund);
+	return payid;
 }
 
-void DatabaseConnector::PaymentUpdate(int paymentID, int paymentStatus) {
-	// TODO - implement DatabaseConnector::PaymentUpdate
-	throw "Not yet implemented";
-}
-
-void DatabaseConnector::PaymentRemove(int paymentID) {
-	// TODO - implement DatabaseConnector::PaymentRemove
-	throw "Not yet implemented";
+int DatabaseConnector::PaymentRemove(int payid) {
+	this->connect();
+	char *zErrMsg = 0;
+	std::string sql = "DELETE FROM payment WHERE payid = '"+std::to_string(payid)+"'";
+	sqlite3_exec(db, sql.c_str(), this->callback, 0, &zErrMsg);
+	this->disconnect();
+	return payid;
 }

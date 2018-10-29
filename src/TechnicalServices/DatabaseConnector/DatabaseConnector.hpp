@@ -26,16 +26,15 @@ public:
 	void ProductSearchByUPC(int UPC);
 	void ProductSearchByName(std::string product_name);
 
-	void OrderCreate(int orderID, int productID, int userID, int quantity, int paymentID);
-	void OrderUpdate(int orderID, int productID, int userID, int quantity, int paymentID);
-	void OrderRemove(int orderID);
-	void OrderGetByID(int orderID);
+	int OrderCreate(int orderid, int userid, int UPC, int quantity, int payid);
+	int OrderUpdate(int orderid, int userid, int UPC, int quantity, int payid);
+	int OrderRemove(int orderid);
+	void OrderGetByID(int orderid);
 	void OrderSearchByUser(int userid);
 
-	void PaymentCreate(int paymentID);
-	void PaymentCreate(int paymentID, int paymentStatus);
-	void PaymentUpdate(int paymentID, int paymentStatus);
-	void PaymentRemove(int paymentID);
+	int PaymentCreate(int payid, int userid, std::string method, std::string amount, int refund);
+	int PaymentUpdate(int payid, int userid, std::string method, std::string amount, int refund);
+	int PaymentRemove(int payid);
 };
 
 #endif
