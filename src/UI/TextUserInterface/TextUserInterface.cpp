@@ -58,18 +58,18 @@ void TextUserInterface::startSession() {
     if (permission == 0) {
         // start admin session here
         std::cout << "Starting Admin Session..." << std::endl;
-        AdminMenu adminMenu;
+        AdminMenu adminMenu(current_userid);
         adminMenu.sessionLoop();
         // this->shutdown();
     } else if (permission == 100) {
         // start Salesperson session here
         std::cout << "Starting Manager Session..." << std::endl;
-        SalespersonMenu salesMenu;
+        SalespersonMenu salesMenu(current_userid);
         salesMenu.sessionLoop();
     } else if (permission == 200) {
         // start auditor session here
         std::cout << "Starting Auditor Session..." << std::endl;
-        AuditorMenu auditormenu;
+        AuditorMenu auditormenu(current_userid);
         auditormenu.sessionLoop();
     } else if (permission == 1000) {
         // start customer session here
