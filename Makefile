@@ -1,6 +1,7 @@
 CC=g++
 CFLAGS=-Wall -std=c++14
 
+all: test_logger test_log_handler test_user_handler test_order_handler test_db test_auth test_auth_handler test_tui test_menu octodepot
 
 test_logger:
 	$(CC) $(CFLAGS) \
