@@ -37,11 +37,17 @@ void DatabaseConnector::Initialize() {
 	this->connect();
 	char *zErrMsg = 0;
 	const char *sql0 = "DROP TABLE user";
-	const char *sql1 = "CREATE TABLE user (userid INT PRIMARY KEY, company_name VARCHAR(255), contact_name VARCHAR(30), address VARCHAR(255), email VARCHAR(255), phone VARCHAR(30))";
-	// const char *sql2 = "create table myTable (UPC int PRIMARY KEY, name varchar(30))";
-	// const char *sql3 = "create table myTable (UPC int PRIMARY KEY, name varchar(30))";
+	const char *sql01 = "DROP TABLE product";
+	const char *sql02 = "DROP TABLE order";
+	const char *sql1 = "CREATE TABLE user (userid INT PRIMARY KEY, company_name TEXT, contact_name TEXT, address TEXT, email TEXT, phone TEXT)";
+	const char *sql2 = "CREATE TABLE order (orderid INT PRIMARY KEY, userid INT, UPC INT, quantity INT)";
+	const char *sql3 = "CREATE TABLE product (UPC INT PRIMARY KEY, product_name TEXT, vendor_name TEXT, price REAL, description TEXT)";
 	sqlite3_exec(db, sql0, this->callback, 0, &zErrMsg);
+	sqlite3_exec(db, sql01, this->callback, 0, &zErrMsg);
+	sqlite3_exec(db, sql02, this->callback, 0, &zErrMsg);
 	sqlite3_exec(db, sql1, this->callback, 0, &zErrMsg);
+	sqlite3_exec(db, sql2, this->callback, 0, &zErrMsg);
+	sqlite3_exec(db, sql3, this->callback, 0, &zErrMsg);
 	this->disconnect();
 }
 
@@ -81,30 +87,53 @@ int DatabaseConnector::UserModify(int userid, std::string company_name, std::str
 	return userid;
 }
 
-
-void DatabaseConnector::ProductCreate(int productID, int productName, int productPrice, int UPC, int description) {
+// (UPC INT PRIMARY KEY, product_name TEXT, vendor_name TEXT, price REAL, description TEXT)
+int DatabaseConnector::ProductCreate(int UPC, std::string product_name, std::string vendor_name, std::string price, std::string description) {
 	// TODO - implement DatabaseConnector::ProductCreate
-	throw "Not yet implemented";
+	this->connect();
+	char *zErrMsg = 0;
+	std::string sql = "INSERT INTO product (UPC, product_name, vendor_name, price, description) values ('"+std::to_string(UPC)+"','"+product_name+"','"+vendor_name+"','"+price+"','"+description+"')";
+	sqlite3_exec(db, sql.c_str(), this->callback, 0, &zErrMsg);
+	std::string sql1 = "SELECT * FROM product WHERE UPC = '"+std::to_string(UPC)+"'";
+	sqlite3_exec(db, sql1.c_str(), this->callback, 0, &zErrMsg);
+	this->disconnect();
+	return UPC;
 }
 
-void DatabaseConnector::ProductUpdate(int productID, int productName, int productPrice, int UPC, int description) {
+int DatabaseConnector::ProductRemove(int UPC){
+	this->connect();
+	char *zErrMsg = 0;
+	std::string sql = "DELETE FROM product WHERE UPC = '"+std::to_string(UPC)+"'";
+	sqlite3_exec(db, sql.c_str(), this->callback, 0, &zErrMsg);
+	this->disconnect();
+	return UPC;
+}
+
+int DatabaseConnector::ProductUpdate(int UPC, std::string product_name, std::string vendor_name, std::string price, std::string description) {
 	// TODO - implement DatabaseConnector::ProductUpdate
-	throw "Not yet implemented";
-}
-
-void DatabaseConnector::ProductGetByID(int productID) {
-	// TODO - implement DatabaseConnector::ProductGetByID
-	throw "Not yet implemented";
+	this->ProductRemove(UPC);
+	this->ProductCreate(UPC, product_name, vendor_name, price, description);
+	return UPC;
 }
 
 void DatabaseConnector::ProductSearchByUPC(int UPC) {
 	// TODO - implement DatabaseConnector::ProductSearchByUPC
-	throw "Not yet implemented";
+	this->connect();
+	char *zErrMsg = 0;
+	std::cout << UPC << std::endl;
+	std::string sql1 = "SELECT * FROM product WHERE UPC = '"+std::to_string(UPC)+"'";
+	sqlite3_exec(db, sql1.c_str(), this->callback, 0, &zErrMsg);
+	this->disconnect();
+	// return UPC;
 }
 
-void DatabaseConnector::ProductSearchByName(int productName) {
+void DatabaseConnector::ProductSearchByName(std::string product_name) {
 	// TODO - implement DatabaseConnector::ProductSearchByName
-	throw "Not yet implemented";
+	this->connect();
+	char *zErrMsg = 0;
+	std::string sql1 = "SELECT * FROM product WHERE product_name = '"+product_name+"'";
+	sqlite3_exec(db, sql1.c_str(), this->callback, 0, &zErrMsg);
+	this->disconnect();
 }
 
 void DatabaseConnector::OrderCreate(int orderID, int productID, int userID, int quantity, int paymentID) {

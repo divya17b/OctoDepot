@@ -20,11 +20,11 @@ public:
 	int UserRemove(int userid);
 	int UserModify(int userid, std::string company_name, std::string contact_name, std::string address, std::string email,std::string phone);
 
-	void ProductCreate(int productID, int productName, int productPrice, int UPC, int description);
-	void ProductUpdate(int productID, int productName, int productPrice, int UPC, int description);
-	void ProductGetByID(int productID);
+	int ProductCreate(int UPC, std::string product_name, std::string vendor_name, std::string price, std::string description);
+	int ProductRemove(int UPC);
+	int ProductUpdate(int UPC, std::string product_name, std::string vendor_name, std::string price, std::string description);
 	void ProductSearchByUPC(int UPC);
-	void ProductSearchByName(int productName);
+	void ProductSearchByName(std::string product_name);
 
 	void OrderCreate(int orderID, int productID, int userID, int quantity, int paymentID);
 	void OrderUpdate(int orderID, int productID, int userID, int quantity, int paymentID);
