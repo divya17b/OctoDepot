@@ -26,13 +26,21 @@ void CustomerMenu::takeSelection() {
         case 1:{
             int UPC = this->requestNumeric("UPC: ");
             int quantity = this->requestNumeric("Quantity: ");
-            std::string method = this->requestString("Please Specify a Payment Method: ");
-            std::string amount = this->requestString("Please Enter the amount: ");
-            
-            OrderHandler orderHandler(session_userid);
-            int payid = orderHandler.createPayment(method, amount, 0);
-            int orderid = orderHandler.createOrder(UPC, quantity, payid);
-            std::cout << "Your order has been placed.\nOrder ID: " << orderid << "\nPayment ID: " << payid << std::endl;
+            // TODO: call ProductHandler ask what is the subtotal
+            std::string yn = this->requestString("Subtotal: $????.??\nPlace Order [Y/n]: ");
+
+            if (yn.empty() || yn == "y" || yn == "Y") {
+                std::string method = this->requestString("Please Specify a Payment Method: ");
+                std::string amount = this->requestString("Please Enter the amount: ");
+                
+                OrderHandler orderHandler(session_userid);
+                int payid = orderHandler.createPayment(method, amount, 0);
+                int orderid = orderHandler.createOrder(UPC, quantity, payid);
+                std::cout << "\nYour order has been placed.\nOrder ID: " << orderid << "\nPayment ID: " << payid << std::endl;
+            } else {
+                std::cout << "\nOrder Cancelled." << std::endl;
+                break;
+            }
         }
         default:
             break;
