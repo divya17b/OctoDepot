@@ -25,7 +25,7 @@ void SalespersonMenu::takeSelection() {
             this->logout();
             break;
         case 1: {
-            UserHandler userHandler;
+            UserHandler userHandler(session_userid);
             std::string company_name, contact_name, address, email, phone;
             company_name = this->requestString("Company Name: ");
             contact_name = this->requestString("Contact Name: ");

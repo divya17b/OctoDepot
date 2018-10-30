@@ -26,7 +26,7 @@ void AdminMenu::takeSelection() {
             this->logout();
             break;
         case 1: {
-            UserHandler userHandler;
+            UserHandler userHandler(session_userid);
             std::string company_name, contact_name, address, email, phone;
             int userid;
             userid       = this->requestNumeric("User Modification | Please Give a User ID : ");

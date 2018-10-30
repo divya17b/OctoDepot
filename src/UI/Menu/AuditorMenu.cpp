@@ -26,7 +26,7 @@ void AuditorMenu::takeSelection() {
             this->logout();
             break;
         } case 1: {
-            LogHandler mLogHandler;
+            LogHandler mLogHandler(session_userid);
             std::vector<std::string> results;
             results = mLogHandler.getLog("123", "456");
 
