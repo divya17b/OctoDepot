@@ -1,5 +1,6 @@
 #include <string>
 #include <iostream>
+#include <unistd.h>
 #include "../../Domain/AuthorizationHandler/AuthorizationHandler.hpp"
 #include "../../Domain/OrderHandler/OrderHandler.hpp"
 #include "../../Domain/UserHandler/UserHandler.hpp"
@@ -56,6 +57,7 @@ void TextUserInterface::login() {
     if (permission == -1) {
         std::cout << "Incorrect login credential." << std::endl;
         current_userid = -1;
+        sleep(2);
     }
 }
 
