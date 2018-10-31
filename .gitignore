@@ -1,6 +1,7 @@
 # sqlite3
 *.db
 *.log
+*.db-journal
 
 # vscode
 .vscode/
