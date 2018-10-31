@@ -45,6 +45,11 @@ std::string Menu::requestString(std::string prompt) {
     return result;
 }
 
+void Menu::pausePrompt() {
+    std::cout << "\n\nPress ENTER to continue.";
+    std::cin.ignore();
+}
+
 void Menu::logout() {
     isActive = false;
 }

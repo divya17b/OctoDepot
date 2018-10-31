@@ -25,6 +25,7 @@ void SalespersonMenu::takeSelection() {
             this->logout();
             break;
         case 1: {
+            std::cout << std::endl << "*** Create New Customer ***" << std::endl << std::endl;
             UserHandler userHandler(session_userid);
             std::string company_name, contact_name, address, email, phone;
             company_name = this->requestString("Company Name: ");
@@ -35,6 +36,8 @@ void SalespersonMenu::takeSelection() {
             int userid = userHandler.createUser(company_name, contact_name, address, email, phone);
 
             std::cout << "User created with ID -> " << userid << " By Sales Manager ID-" << session_userid << std::endl;
+            
+            this->pausePrompt();
             break;
         }
         default:

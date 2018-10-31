@@ -2,6 +2,10 @@
 *.db
 *.log
 
+# vscode
+.vscode/
+.vscode/*
+
 # Prerequisites
 *.d
 

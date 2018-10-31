@@ -26,6 +26,7 @@ void AuditorMenu::takeSelection() {
             this->logout();
             break;
         } case 1: {
+            std::cout << std::endl << "*** Retrieve System Log ***" << std::endl << std::endl;
             LogHandler mLogHandler(session_userid);
             std::vector<std::string> results;
             results = mLogHandler.getLog("123", "456");
@@ -34,6 +35,8 @@ void AuditorMenu::takeSelection() {
                 std::cout << i << std::endl;
             }
             std::cout << "Log Retrieved by Auditor-" << session_userid << std::endl;
+
+            this->pausePrompt();
             break;
         } default:
             std::cout << "Invalid option" << std::endl;

@@ -26,6 +26,7 @@ void AdminMenu::takeSelection() {
             this->logout();
             break;
         case 1: {
+            std::cout << std::endl << "*** Modify Customer Information ***" << std::endl << std::endl;
             UserHandler userHandler(session_userid);
             std::string company_name, contact_name, address, email, phone;
             int userid;
@@ -38,6 +39,8 @@ void AdminMenu::takeSelection() {
             userid = userHandler.modifyUser(userid, company_name, contact_name, address, email, phone);
 
             std::cout << "User " << userid << "'s information is modified by Admin-" << session_userid << std::endl;
+
+            this->pausePrompt();
             break;
         } case 2: {
             std::string bye = 

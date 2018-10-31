@@ -14,6 +14,7 @@ protected:
     void takeSelection();
     int requestNumeric(std::string prompt);
     std::string requestString(std::string prompt);
+    void pausePrompt();
     void logout();
 
 public:

@@ -24,6 +24,8 @@ void CustomerMenu::takeSelection() {
             this->logout();
             break;
         case 1:{
+            std::cout << std::endl << "*** Placing Order using UPC ***" << std::endl << std::endl; 
+
             int UPC = this->requestNumeric("UPC: ");
             int quantity = this->requestNumeric("Quantity: ");
             // TODO: call ProductHandler ask what is the subtotal
@@ -39,8 +41,9 @@ void CustomerMenu::takeSelection() {
                 std::cout << "\nYour order has been placed.\nOrder ID: " << orderid << "\nPayment ID: " << payid << std::endl;
             } else {
                 std::cout << "\nOrder Cancelled." << std::endl;
-                break;
             }
+            this->pausePrompt();
+            break;
         }
         default:
             break;
