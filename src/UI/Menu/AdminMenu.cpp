@@ -11,7 +11,7 @@ AdminMenu::AdminMenu(int userid) {
 }
 
 void AdminMenu::initSelections() {
-    menu = "Admin menu\n-------------------\n1. Modify Customer Information\n0. Logout";
+    menu = "Admin menu\n-------------------\n1. Modify Customer Information\n2. Shutdown\n0. Logout";
 }
 void AdminMenu::takeSelection() {
     int selection = -1;
@@ -39,6 +39,16 @@ void AdminMenu::takeSelection() {
 
             std::cout << "User " << userid << "'s information is modified by Admin-" << session_userid << std::endl;
             break;
+        } case 2: {
+            std::string bye = 
+                "██████╗ ██╗   ██╗███████╗    ██╗\n"
+                "██╔══██╗╚██╗ ██╔╝██╔════╝    ██║\n"
+                "██████╔╝ ╚████╔╝ █████╗      ██║\n"
+                "██╔══██╗  ╚██╔╝  ██╔══╝      ╚═╝\n"
+                "██████╔╝   ██║   ███████╗    ██╗\n"
+                "╚═════╝    ╚═╝   ╚══════╝    ╚═╝\n";
+            std::cout << bye << std::endl;
+            exit(0);
         }
         default:
             break;

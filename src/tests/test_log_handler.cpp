@@ -6,7 +6,7 @@
 #include "../TechnicalServices/Logger/Logger.hpp"
 
 int main() {
-    LogHandler mLogHandler;
+    LogHandler mLogHandler(200);
     std::vector<std::string> results;
     results = mLogHandler.getLog("123", "456");
 
