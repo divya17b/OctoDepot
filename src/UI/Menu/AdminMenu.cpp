@@ -11,6 +11,10 @@ AdminMenu::AdminMenu(int userid, bool *continueStatus) {
     this->parentContinueStatus = continueStatus;
 }
 
+AdminMenu::~AdminMenu() {
+    delete this->parentContinueStatus;
+}
+
 void AdminMenu::initSelections() {
     menu = "Admin menu\n-------------------\n1. Modify Customer Information\n2. Shutdown\n0. Logout";
 }
@@ -53,11 +57,11 @@ void AdminMenu::takeSelection() {
     }
 }
 
-void AdminMenu::sessionLoop() {
-    this->initSelections();
-    this->clearScreen();
-    while (isActive) {
-        this->displayMenu();
-        this->takeSelection();
-    }
-}
+// void AdminMenu::sessionLoop() {
+//     this->initSelections();
+//     this->clearScreen();
+//     while (isActive) {
+//         this->displayMenu();
+//         this->takeSelection();
+//     }
+// }

@@ -10,6 +10,8 @@ SalespersonMenu::SalespersonMenu(int userid) {
     session_userid = userid;
 }
 
+SalespersonMenu::~SalespersonMenu() {}
+
 void SalespersonMenu::initSelections() {
     menu = "Salesperson menu\n-------------------\n1. Create New Customer Account\n0. Logout";
 }
@@ -59,11 +61,11 @@ void SalespersonMenu::takeSelection() {
 //     return result;
 // }
 
-void SalespersonMenu::sessionLoop() {
-    this->initSelections();
-    this->clearScreen();
-    while (isActive) {
-        this->displayMenu();
-        this->takeSelection();
-    }
-}
+// void SalespersonMenu::sessionLoop() {
+//     this->initSelections();
+//     this->clearScreen();
+//     while (isActive) {
+//         this->displayMenu();
+//         this->takeSelection();
+//     }
+// }

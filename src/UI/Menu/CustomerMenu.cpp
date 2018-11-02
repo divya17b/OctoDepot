@@ -8,6 +8,8 @@ CustomerMenu::CustomerMenu(int userid) {
     session_userid = userid;
 }
 
+CustomerMenu::~CustomerMenu() {}
+
 void CustomerMenu::initSelections() {
     menu = "Customer menu\n-------------------\n1. Place Order Using UPC\n0. Logout";
 }
@@ -51,11 +53,11 @@ void CustomerMenu::takeSelection() {
     }
 }
 
-void CustomerMenu::sessionLoop() {
-    this->initSelections();
-    this->clearScreen();
-    while (isActive) {
-        this->displayMenu();
-        this->takeSelection();
-    }
-}
+// void CustomerMenu::sessionLoop() {
+//     this->initSelections();
+//     this->clearScreen();
+//     while (isActive) {
+//         this->displayMenu();
+//         this->takeSelection();
+//     }
+// }

@@ -2,9 +2,9 @@
 #include <string>
 #include "Menu.hpp"
 
-Menu::Menu() {
-    isActive = true;
-}
+// Menu::Menu() {
+//     isActive = true;
+// }
 
 void Menu::clearScreen() {
     for (int i=0;i<24;i++) std::cout << std::endl;
@@ -13,23 +13,23 @@ void Menu::displayMenu() {
     std::cout << menu << std::endl;
 }
 
-void Menu::initSelections() {
-    menu = "template menu\n 1. logout";
-}
+// void Menu::initSelections() {
+//     menu = "template menu\n 1. logout";
+// }
 
-void Menu::takeSelection() {
-    // not consider wrong input
-    // trusting user input :)
-    int selection = -1;
-    selection = this->requestNumeric("\n: ");
+// void Menu::takeSelection() {
+//     // not consider wrong input
+//     // trusting user input :)
+//     int selection = -1;
+//     selection = this->requestNumeric("\n: ");
 
-    // print selection, debug purpose
-    std::cout << selection << std::endl;
+//     // print selection, debug purpose
+//     std::cout << selection << std::endl;
 
-    if (selection == 1) {
-        this->logout();
-    }
-}
+//     if (selection == 1) {
+//         this->logout();
+//     }
+// }
 
 int Menu::requestNumeric(std::string prompt) {
     int result;
@@ -55,7 +55,9 @@ void Menu::logout() {
 }
 
 void Menu::sessionLoop() {
+    isActive = true;
     this->initSelections();
+    this->clearScreen();
     while (isActive) {
         this->clearScreen();
         this->displayMenu();

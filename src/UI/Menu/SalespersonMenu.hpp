@@ -5,11 +5,12 @@ class SalespersonMenu : public Menu {
 
 public:
     SalespersonMenu(int userid);
+    ~SalespersonMenu();
     void initSelections();
     void takeSelection();
     // int requestNumeric(std::string prompt);
     // std::string requestString(std::string prompt);
-    void sessionLoop();
+    // void sessionLoop();
 };
 
 #endif

@@ -5,10 +5,11 @@ class AuditorMenu : public Menu {
 
 public:
     AuditorMenu(int userid);
+    ~AuditorMenu();
     void initSelections();
     void takeSelection();
     // void getLog();
-    void sessionLoop();
+    // void sessionLoop();
 };
 
 #endif

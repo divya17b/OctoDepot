@@ -1,6 +1,7 @@
 #include <string>
 #include <iostream>
 #include <unistd.h>
+#include <bits/unique_ptr.h>
 #include "../../Domain/AuthorizationHandler/AuthorizationHandler.hpp"
 #include "../../Domain/OrderHandler/OrderHandler.hpp"
 #include "../../Domain/UserHandler/UserHandler.hpp"
@@ -64,25 +65,21 @@ void TextUserInterface::login() {
 void TextUserInterface::startSession() {
     if (permission == 0) {
         // start admin session here
-        std::cout << "Starting Admin Session..." << std::endl;
-        AdminMenu adminMenu(current_userid, &this->isActive);
-        adminMenu.sessionLoop();
-        // this->shutdown();
+        // isActive is passed to AdminMenu in case of Admin changing the run state of system
+        std::unique_ptr<Menu> adminMenu(new AdminMenu(current_userid, &this->isActive));
+        adminMenu->sessionLoop();
     } else if (permission == 100) {
         // start Salesperson session here
-        std::cout << "Starting Manager Session..." << std::endl;
-        SalespersonMenu salesMenu(current_userid);
-        salesMenu.sessionLoop();
+        std::unique_ptr<Menu> salesMenu(new SalespersonMenu(current_userid));
+        salesMenu->sessionLoop();
     } else if (permission == 200) {
         // start auditor session here
-        std::cout << "Starting Auditor Session..." << std::endl;
-        AuditorMenu auditormenu(current_userid);
-        auditormenu.sessionLoop();
+        std::unique_ptr<Menu> auditorMenu(new AuditorMenu(current_userid));
+        auditorMenu->sessionLoop();
     } else if (permission == 1000) {
         // start customer session here
-        std::cout << "Starting Customer Session..." << std::endl;
-        CustomerMenu customerMenu(current_userid);
-        customerMenu.sessionLoop();
+        std::unique_ptr<Menu> customerMenu(new CustomerMenu(current_userid));
+        customerMenu->sessionLoop();
     } else {
         // incorrect permission should not start anything
         // but send out another login

@@ -10,15 +10,15 @@ protected:
 
     void clearScreen();
     void displayMenu();
-    void initSelections();
-    void takeSelection();
+    virtual void initSelections() = 0;
+    virtual void takeSelection() = 0;
     int requestNumeric(std::string prompt);
     std::string requestString(std::string prompt);
     void pausePrompt();
     void logout();
 
 public:
-    Menu();
+    // Menu();
     void sessionLoop();
 };
 

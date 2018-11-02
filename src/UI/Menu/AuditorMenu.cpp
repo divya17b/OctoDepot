@@ -10,6 +10,8 @@ AuditorMenu::AuditorMenu(int userid) {
     session_userid = userid;
 }
 
+AuditorMenu::~AuditorMenu() {}
+
 void AuditorMenu::initSelections() {
     menu = "Auditor menu\n-------------------\n1. Get System Log\n0. Logout";
 }
@@ -43,11 +45,11 @@ void AuditorMenu::takeSelection() {
     }
 }
 
-void AuditorMenu::sessionLoop() {
-    this->initSelections();
-    this->clearScreen();
-    while (isActive) {
-        this->displayMenu();
-        this->takeSelection();
-    }
-}
+// void AuditorMenu::sessionLoop() {
+//     this->initSelections();
+//     this->clearScreen();
+//     while (isActive) {
+//         this->displayMenu();
+//         this->takeSelection();
+//     }
+// }
