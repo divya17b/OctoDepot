@@ -7,6 +7,9 @@
 .vscode/
 .vscode/*
 
+# visual-paradigm
+design/*.vpp.*
+
 # Prerequisites
 *.d
 
