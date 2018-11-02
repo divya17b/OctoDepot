@@ -6,8 +6,9 @@
 #include "../../Domain/UserHandler/UserHandler.hpp"
 #include "../../TechnicalServices/DatabaseConnector/DatabaseConnector.hpp"
 
-AdminMenu::AdminMenu(int userid) {
+AdminMenu::AdminMenu(int userid, bool *continueStatus) {
     session_userid = userid;
+    this->parentContinueStatus = continueStatus;
 }
 
 void AdminMenu::initSelections() {
@@ -43,15 +44,9 @@ void AdminMenu::takeSelection() {
             this->pausePrompt();
             break;
         } case 2: {
-            std::string bye = 
-                "██████╗ ██╗   ██╗███████╗    ██╗\n"
-                "██╔══██╗╚██╗ ██╔╝██╔════╝    ██║\n"
-                "██████╔╝ ╚████╔╝ █████╗      ██║\n"
-                "██╔══██╗  ╚██╔╝  ██╔══╝      ╚═╝\n"
-                "██████╔╝   ██║   ███████╗    ██╗\n"
-                "╚═════╝    ╚═╝   ╚══════╝    ╚═╝\n";
-            std::cout << bye << std::endl;
-            exit(0);
+            // exit(0);
+            this->isActive = false;
+            *this->parentContinueStatus = false;
         }
         default:
             break;

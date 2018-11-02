@@ -65,7 +65,7 @@ void TextUserInterface::startSession() {
     if (permission == 0) {
         // start admin session here
         std::cout << "Starting Admin Session..." << std::endl;
-        AdminMenu adminMenu(current_userid);
+        AdminMenu adminMenu(current_userid, &this->isActive);
         adminMenu.sessionLoop();
         // this->shutdown();
     } else if (permission == 100) {
@@ -104,7 +104,7 @@ void TextUserInterface::MainLoop() {
             this->startSession();
         }
     }
-    std::cout << "Shutting down...\nBye!" << std::endl;
+    this->printBye();
 }
 
 void TextUserInterface::printLogo() {
@@ -126,4 +126,15 @@ void TextUserInterface::printLogo() {
 
     // std::string logo = "   ____       _        _____                   _   \n  / __ \\     | |      |  __ \\                 | |  \n | |  | | ___| |_ ___ | |  | | ___ _ __   ___ | |_ \n | |  | |/ __| __/ _ \\| |  | |/ _ | '_ \\ / _ \\| __|\n | |__| | (__| || (_) | |__| |  __| |_) | (_) | |_ \n  \\____/ \\___|\\__\\___/|_____/ \\___| .__/ \\___/ \\__|\n                                  | |              \n                                  |_|              \n";
     std::cout << logo << std::endl << std::endl << std::endl << version << std::endl << std::endl;
+}
+
+void TextUserInterface::printBye() {
+    std::string bye = 
+        "██████╗ ██╗   ██╗███████╗    ██╗\n"
+        "██╔══██╗╚██╗ ██╔╝██╔════╝    ██║\n"
+        "██████╔╝ ╚████╔╝ █████╗      ██║\n"
+        "██╔══██╗  ╚██╔╝  ██╔══╝      ╚═╝\n"
+        "██████╔╝   ██║   ███████╗    ██╗\n"
+        "╚═════╝    ╚═╝   ╚══════╝    ╚═╝\n";
+    std::cout << bye << std::endl;
 }

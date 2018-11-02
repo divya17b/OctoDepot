@@ -3,8 +3,10 @@
 
 class AdminMenu : public Menu {
 
+bool* parentContinueStatus;
+
 public:
-    AdminMenu(int userid);
+    AdminMenu(int userid, bool* ContinueStatus);
     void initSelections();
     void takeSelection();
     // void getLog();
