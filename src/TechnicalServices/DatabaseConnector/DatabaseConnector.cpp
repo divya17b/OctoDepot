@@ -24,6 +24,9 @@ void DatabaseConnector::disconnect() {
 	sqlite3_close(db);
 }
 
+// the NotUsed pointer will give a unused variable warning, but this pointer is required by
+// sqlite3_exec method; it's original intent is to store the result of the query; however, 
+// we have not been so far for this increment.
 int DatabaseConnector::callback(void *NotUsed, int argc, char **argv, char **azColName) {
 	int i;
 	for(i=0; i<argc; i++) {
