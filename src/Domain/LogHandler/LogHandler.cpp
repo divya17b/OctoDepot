@@ -12,6 +12,8 @@ LogHandler::LogHandler(int userid) {
 }
 
 std::vector<std::string> LogHandler::getLog(std::string startTime, std::string endTime) {
+    // remove unused warning lol :)
+    startTime + endTime;
     Logger logger("test.log");
     std::vector<std::string> result = logger.readLines();
     // it will be empty for now
