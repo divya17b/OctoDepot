@@ -1,6 +1,7 @@
 #include <string>
 #include <iostream>
 #include <sqlite3.h>
+#include <bits/unique_ptr.h>
 #include "Menu.hpp"
 #include "AdminMenu.hpp"
 #include "../../Domain/UserHandler/UserHandler.hpp"
@@ -32,7 +33,8 @@ void AdminMenu::takeSelection() {
             break;
         case 1: {
             std::cout << std::endl << "*** Modify Customer Information ***" << std::endl << std::endl;
-            UserHandler userHandler(session_userid);
+            // UserHandler userHandler(session_userid);
+            std::unique_ptr<UserHandler> userHandler(new UserHandler(session_userid));
             std::string company_name, contact_name, address, email, phone;
             int userid;
             userid       = this->requestNumeric("User Modification | Please Give a User ID : ");
@@ -41,7 +43,7 @@ void AdminMenu::takeSelection() {
             address      = this->requestString("Address: ");
             email        = this->requestString("Email: ");
             phone        = this->requestString("Phone: ");
-            userid = userHandler.modifyUser(userid, company_name, contact_name, address, email, phone);
+            userid = userHandler->modifyUser(userid, company_name, contact_name, address, email, phone);
 
             std::cout << "User " << userid << "'s information is modified by Admin-" << session_userid << std::endl;
 

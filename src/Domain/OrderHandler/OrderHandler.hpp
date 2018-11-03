@@ -1,9 +1,10 @@
 #ifndef ORDERHANDLER_HPP
 #define ORDERHANDLER_HPP
 
-class OrderHandler {
+#include "../EventHandler/EventHandler.hpp"
+
+class OrderHandler : public EventHandler  {
 private:
-    int current_userid;
     int getRandomNumber(int lowerBound, int upperBound);
 
 public:

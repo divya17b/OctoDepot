@@ -2,6 +2,8 @@
 #include <vector>
 #include <fstream>
 #include <sqlite3.h>
+
+#include "../EventHandler/EventHandler.hpp"
 #include "UserHandler.hpp"
 #include "../../TechnicalServices/DatabaseConnector/DatabaseConnector.hpp"
 #include "../../TechnicalServices/Logger/Logger.hpp"

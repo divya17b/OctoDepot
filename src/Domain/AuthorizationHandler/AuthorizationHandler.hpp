@@ -1,7 +1,9 @@
 #ifndef AuthorizationHandler_HPP
 #define AuthorizationHandler_HPP
 
-class AuthorizationHandler {
+#include "../EventHandler/EventHandler.hpp"
+
+class AuthorizationHandler : public EventHandler {
 public:
     AuthorizationHandler();
     int authenticate(int userid, std::string password);

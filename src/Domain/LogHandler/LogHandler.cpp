@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 
+#include "../EventHandler/EventHandler.hpp"
 #include "LogHandler.hpp"
 #include "../../TechnicalServices/Logger/Logger.hpp"
 

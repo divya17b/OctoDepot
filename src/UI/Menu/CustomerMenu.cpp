@@ -1,5 +1,6 @@
 #include <string>
 #include <iostream>
+#include <bits/unique_ptr.h>
 #include "Menu.hpp"
 #include "CustomerMenu.hpp"
 #include "../../Domain/OrderHandler/OrderHandler.hpp"
@@ -38,9 +39,9 @@ void CustomerMenu::takeSelection() {
                 std::string method = this->requestString("Please Specify a Payment Method: ");
                 std::string amount = this->requestString("Please Enter the amount: ");
 
-                OrderHandler orderHandler(session_userid);
-                int payid = orderHandler.createPayment(method, amount, 0);
-                int orderid = orderHandler.createOrder(UPC, quantity, payid);
+                std::unique_ptr<OrderHandler> orderHandler(new OrderHandler(session_userid));
+                int payid = orderHandler->createPayment(method, amount, 0);
+                int orderid = orderHandler->createOrder(UPC, quantity, payid);
                 std::cout << "\nYour order has been placed.\nOrder ID: " << orderid << "\nPayment ID: " << payid << std::endl;
             } else {
                 std::cout << "\nOrder Cancelled." << std::endl;

@@ -1,9 +1,10 @@
 #ifndef LOGHANDLER_HPP
 #define LOGHANDLER_HPP
 
-class UserHandler {
-private:
-    int session_userid;
+#include "../EventHandler/EventHandler.hpp"
+
+class UserHandler : public EventHandler {
+
 public:
     UserHandler(int userid);
     int createUser(std::string company_name, std::string contact_name, std::string address, std::string email,std::string phone);

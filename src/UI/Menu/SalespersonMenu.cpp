@@ -1,6 +1,7 @@
 #include <string>
 #include <iostream>
 #include <sqlite3.h>
+#include <bits/unique_ptr.h>
 #include "Menu.hpp"
 #include "SalespersonMenu.hpp"
 #include "../../Domain/UserHandler/UserHandler.hpp"
@@ -28,14 +29,14 @@ void SalespersonMenu::takeSelection() {
             break;
         case 1: {
             std::cout << std::endl << "*** Create New Customer ***" << std::endl << std::endl;
-            UserHandler userHandler(session_userid);
+            std::unique_ptr<UserHandler> userHandler(new UserHandler(session_userid));
             std::string company_name, contact_name, address, email, phone;
             company_name = this->requestString("Company Name: ");
             contact_name = this->requestString("Contact Name: ");
             address      = this->requestString("Address: ");
             email        = this->requestString("Email: ");
             phone        = this->requestString("Phone: ");
-            int userid = userHandler.createUser(company_name, contact_name, address, email, phone);
+            int userid = userHandler->createUser(company_name, contact_name, address, email, phone);
 
             std::cout << "User created with ID -> " << userid << " By Sales Manager ID-" << session_userid << std::endl;
             

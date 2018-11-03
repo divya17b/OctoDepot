@@ -2,6 +2,7 @@
 #include <vector>
 #include <fstream>
 #include <iostream>
+#include <bits/unique_ptr.h>
 #include "Menu.hpp"
 #include "AuditorMenu.hpp"
 #include "../../Domain/LogHandler/LogHandler.hpp"
@@ -29,9 +30,9 @@ void AuditorMenu::takeSelection() {
             break;
         } case 1: {
             std::cout << std::endl << "*** Retrieve System Log ***" << std::endl << std::endl;
-            LogHandler mLogHandler(session_userid);
+            std::unique_ptr<LogHandler> mLogHandler(new LogHandler(session_userid));
             std::vector<std::string> results;
-            results = mLogHandler.getLog("123", "456");
+            results = mLogHandler->getLog("123", "456");
 
             for (auto i : results) {
                 std::cout << i << std::endl;
