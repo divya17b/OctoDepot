@@ -53,12 +53,3 @@ void CustomerMenu::takeSelection() {
             break;
     }
 }
-
-// void CustomerMenu::sessionLoop() {
-//     this->initSelections();
-//     this->clearScreen();
-//     while (isActive) {
-//         this->displayMenu();
-//         this->takeSelection();
-//     }
-// }

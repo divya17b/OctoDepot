@@ -24,9 +24,6 @@ void AdminMenu::takeSelection() {
     std::cout << "\n: ";
     std::cin >> selection;
 
-    // print selection, debug purpose
-    // std::cout << selection << std::endl;
-
     switch (selection) {
         case 0:
             this->logout();
@@ -58,12 +55,3 @@ void AdminMenu::takeSelection() {
             break;
     }
 }
-
-// void AdminMenu::sessionLoop() {
-//     this->initSelections();
-//     this->clearScreen();
-//     while (isActive) {
-//         this->displayMenu();
-//         this->takeSelection();
-//     }
-// }

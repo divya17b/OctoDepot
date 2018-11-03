@@ -1,5 +1,4 @@
 CC=g++
-# CFLAGS=-Wall -std=c++14
 CFLAGS=-g3 -O0 -ansi -std=c++17 -pedantic -Wall -Wold-style-cast -Woverloaded-virtual -Wextra
 
 all: test_logger test_log_handler test_user_handler test_order_handler test_db test_auth test_auth_handler test_tui test_menu octodepot

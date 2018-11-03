@@ -45,12 +45,3 @@ void AuditorMenu::takeSelection() {
             std::cout << "Invalid option" << std::endl;
     }
 }
-
-// void AuditorMenu::sessionLoop() {
-//     this->initSelections();
-//     this->clearScreen();
-//     while (isActive) {
-//         this->displayMenu();
-//         this->takeSelection();
-//     }
-// }

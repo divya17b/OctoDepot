@@ -20,9 +20,6 @@ void SalespersonMenu::takeSelection() {
     int selection = -1;
     selection = this->requestNumeric("\n: ");
 
-    // print selection, debug purpose
-    // std::cout << selection << std::endl;
-
     switch (selection) {
         case 0:
             this->logout();
@@ -47,26 +44,3 @@ void SalespersonMenu::takeSelection() {
             break;
     }
 }
-
-// int SalespersonMenu::requestNumeric(std::string prompt) {
-//     int result;
-//     std::cout << prompt;
-//     std::cin >> result;
-//     std::cin.ignore();
-//     return result;
-// }
-// std::string SalespersonMenu::requestString(std::string prompt) {
-//     std::string result;
-//     std::cout << prompt;
-//     std::getline(std::cin, result);
-//     return result;
-// }
-
-// void SalespersonMenu::sessionLoop() {
-//     this->initSelections();
-//     this->clearScreen();
-//     while (isActive) {
-//         this->displayMenu();
-//         this->takeSelection();
-//     }
-// }
