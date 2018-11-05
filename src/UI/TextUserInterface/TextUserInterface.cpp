@@ -13,6 +13,8 @@
 #include "../../UI/Menu/CustomerMenu.hpp"
 #include "TextUserInterface.hpp"
 
+// for detail of what each function does, see comments in TextUserInterface.hpp
+
 TextUserInterface::TextUserInterface() {
     version = "OctoDepot Virtual Warehouse Version 1.0 Beta";
     permission = -1;
@@ -93,10 +95,13 @@ void TextUserInterface::shutdown() {
 }
 
 void TextUserInterface::MainLoop() {
+    // keep running if isActive is true
     while (isActive) {
+        // if not logged in
         if (permission == -1) {
             this->printLogo();
             this->login();
+        // if logged in successfully
         } else {
             this->startSession();
         }

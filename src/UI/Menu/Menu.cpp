@@ -2,6 +2,8 @@
 #include <string>
 #include "Menu.hpp"
 
+// see detail on comments of menu.hpp
+
 void Menu::clearScreen() {
     for (int i=0;i<24;i++) std::cout << std::endl;
 }

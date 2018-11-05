@@ -1,6 +1,7 @@
 #ifndef SalespersonMenu_HPP
 #define SalespersonMenu_HPP
 
+// use this class when the user permission is 100
 class SalespersonMenu : public Menu {
 
 public:

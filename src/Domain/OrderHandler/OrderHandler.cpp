@@ -15,14 +15,19 @@ OrderHandler::OrderHandler(int userid) {
     session_userid = userid;
 }
 
+// generate a random number in between lowerBound and upperBound
 int OrderHandler::getRandomNumber(int lowerBound, int upperBound) {
     srand(time(NULL));
     return rand() % upperBound + lowerBound;
 }
 
+// create order and persist that order into DB using DatabaseConnector
 int OrderHandler::createOrder(int UPC, int quantity, int payid) {
     int orderid = this->getRandomNumber(1, 1000000);
+
+    // create DatabaseConnector object
     DatabaseConnector db("test.db");
+    // persist order into db
     db.OrderCreate(orderid, session_userid, UPC, quantity, payid);
 
     // log order event
@@ -33,9 +38,12 @@ int OrderHandler::createOrder(int UPC, int quantity, int payid) {
     return orderid;
 }
 
+// create payment and persist that payment into DB using DatabaseConnector
 int OrderHandler::createPayment(std::string method, std::string amount, int refund) {
     int payid = this->getRandomNumber(1, 1000000);
+    // create DatabaseConnector object
     DatabaseConnector db("test.db");
+    // persist payment into DB
     db.PaymentCreate(payid, session_userid, method, amount, refund);
 
     // log this payment

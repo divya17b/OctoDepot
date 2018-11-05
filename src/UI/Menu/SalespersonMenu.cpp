@@ -8,6 +8,7 @@
 #include "../../TechnicalServices/DatabaseConnector/DatabaseConnector.hpp"
 
 SalespersonMenu::SalespersonMenu(int userid) {
+    // store a copy of user id in local class
     session_userid = userid;
 }
 
@@ -21,10 +22,14 @@ void SalespersonMenu::takeSelection() {
     selection = this->requestNumeric("\n: ");
 
     switch (selection) {
+        // option 0 - log out
         case 0:
             this->logout();
             break;
+        // option 1 create new customer
         case 1: {
+            // 1. asking information about the new user to be created
+            // 2. create UserHandler object to create user
             std::cout << std::endl << "*** Create New Customer ***" << std::endl << std::endl;
             std::unique_ptr<UserHandler> userHandler(new UserHandler(session_userid));
             std::string company_name, contact_name, address, email, phone;

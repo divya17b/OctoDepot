@@ -8,8 +8,11 @@
 
 AuthorizationHandler::AuthorizationHandler() {}
 
+// authenticate userid/password combination
 int AuthorizationHandler::authenticate(int userid, std::string password) {
+    // create AuthorizationVendorConnector object
     AuthorizationVendorConnector auth("auth.vendor.com/api/v15/");
+    // call authenticateUser to verify userid/password
     int userid_logged_in = auth.authenticateUser(userid, password);
 
     // create logger object and log the login event

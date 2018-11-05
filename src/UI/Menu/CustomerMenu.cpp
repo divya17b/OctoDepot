@@ -6,6 +6,7 @@
 #include "../../Domain/OrderHandler/OrderHandler.hpp"
 
 CustomerMenu::CustomerMenu(int userid) {
+    // store a copy of user id in local class
     session_userid = userid;
 }
 
@@ -23,12 +24,15 @@ void CustomerMenu::takeSelection() {
     // std::cout << selection << std::endl;
 
     switch (selection) {
+        // option 0 to logout
         case 0:
             this->logout();
             break;
+        // option 1 to place order using UPC
         case 1:{
             std::cout << std::endl << "*** Placing Order using UPC ***" << std::endl << std::endl;
 
+            // 1. asking product UPC/quantity and method and amount to pay
             int UPC = this->requestNumeric("UPC: ");
             int quantity = this->requestNumeric("Quantity: ");
             // TODO: call ProductHandler ask what is the subtotal
@@ -38,7 +42,7 @@ void CustomerMenu::takeSelection() {
             if (yn.empty() || yn == "y" || yn == "Y") {
                 std::string method = this->requestString("Please Specify a Payment Method: ");
                 std::string amount = this->requestString("Please Enter the amount: ");
-
+                // if user confirms buying, create OrderHandler to create payment and order
                 std::unique_ptr<OrderHandler> orderHandler(new OrderHandler(session_userid));
                 int payid = orderHandler->createPayment(method, amount, 0);
                 int orderid = orderHandler->createOrder(UPC, quantity, payid);

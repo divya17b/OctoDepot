@@ -8,12 +8,15 @@
 #include "../../TechnicalServices/Logger/Logger.hpp"
 
 LogHandler::LogHandler(int userid) {
+    // store a copy of user id in local class
     session_userid = userid;
 }
 
+// get the system log from desired start time to end time into desired location
 std::vector<std::string> LogHandler::getLog(std::string startTime, std::string endTime) {
     // remove unused warning lol :)
     startTime + endTime;
+    // create logger class to read log from
     Logger logger("test.log");
     std::vector<std::string> result = logger.readLines();
     // it will be empty for now
