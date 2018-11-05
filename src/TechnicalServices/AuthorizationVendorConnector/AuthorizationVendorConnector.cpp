@@ -8,16 +8,16 @@ AuthorizationVendorConnector::~AuthorizationVendorConnector() {}
 
 // for the prototype, the purpose is demo. so mock up the api
 int AuthorizationVendorConnector::authenticateUser(int UserID, std::string password) {
-	if (UserID == 1 && !(password.compare("qwer1234asdf")) ) {
+	if (UserID == 1 && !(password.compare("qwer1234")) ) {
         return 0;
     }
-    else if (UserID == 100 && !(password.compare("qwer1234asdf")) ) {
+    else if (UserID == 100 && !(password.compare("qwer1234")) ) {
         return 100;
     }
-    else if (UserID == 200 && !(password.compare("qwer1234asdf")) ) {
+    else if (UserID == 200 && !(password.compare("qwer1234")) ) {
         return 200;
     }
-    else if (UserID == 1000 && !(password.compare("qwer1234asdf")) ) {
+    else if (UserID == 1000 && !(password.compare("qwer1234")) ) {
         return 1000;
     }
     else if (UserID == 1001 && !(password.compare("A904#!^wWcIDRL%^rp&Tv%@QIjOWYYk$14i")) ) {
