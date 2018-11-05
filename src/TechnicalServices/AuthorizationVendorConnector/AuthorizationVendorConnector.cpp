@@ -4,6 +4,7 @@
 AuthorizationVendorConnector::AuthorizationVendorConnector(std::string url) {
     api = url;
 }
+AuthorizationVendorConnector::~AuthorizationVendorConnector() {}
 
 // for the prototype, the purpose is demo. so mock up the api
 int AuthorizationVendorConnector::authenticateUser(int UserID, std::string password) {

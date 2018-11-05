@@ -10,6 +10,7 @@ Logger::Logger(std::string LogFileLocation) {
 	// store log file location
 	logFileLocation = LogFileLocation;
 }
+Logger::~Logger() {}
 
 // open log file as reading mode
 void Logger::openLogFileAsReading() {

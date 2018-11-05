@@ -20,6 +20,7 @@ private:
 	static int callback(void *NotUsed, int argc, char **argv, char **azColName);
 public:
 	DatabaseConnector(std::string db_file_name);
+	~DatabaseConnector();
 
 	// to be implement in next increment
 	void CreateTables();

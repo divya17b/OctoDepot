@@ -30,6 +30,7 @@ public:
 	// std::string serialize(std::string timestamp, std::string type, int userid, std::string msg);
 
 	Logger(std::string LogFile);
+	~Logger();
 	// take information, serialize, then write one line into log file
 	int log(std::string type, int userid, std::string msg);
 	// read the log file into buffer

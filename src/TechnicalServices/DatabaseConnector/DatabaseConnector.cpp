@@ -9,6 +9,9 @@ DatabaseConnector::DatabaseConnector(std::string db_file_name) {
 	db_name = db_file_name;
 }
 
+DatabaseConnector::~DatabaseConnector() {
+}
+
 // initialize a database connection
 void DatabaseConnector::connect() {
 	sqlite3_open(db_name.c_str(), &db);

@@ -8,6 +8,7 @@ private:
 
 public:
 	AuthorizationVendorConnector(std::string url);
+	~AuthorizationVendorConnector();
 	// contact API to verify the UserID/password combination
 	// acquire permission of the UserID
 	int authenticateUser(int UserID, std::string password);
